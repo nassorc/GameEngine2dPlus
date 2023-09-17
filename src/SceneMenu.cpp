@@ -77,6 +77,4 @@ void SceneMenu::sRender() {
     // m_game->window().draw(m_fontEntities.at(0));
     // m_game->window().draw(m_fontEntities.at(1));
     // m_game->window().draw(m_fontEntities.at(2));
-
-     m_game->window().display();
 }

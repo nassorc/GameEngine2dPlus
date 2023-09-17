@@ -51,11 +51,19 @@ void GameEngine::init(const std::string &path) {
 void GameEngine::update() {
     sUserInput();
     currentScene()->update();
+    ImGui::SFML::Update(m_window, m_dt.restart());
+    ImGui::ShowDemoWindow();
+    ImGui::SFML::Render(m_window);
+
+    // DISPLAY ENTITIES
+    m_window.display();
 }
 
 void GameEngine::sUserInput() {
     sf::Event event;
     while (m_window.pollEvent(event)) {
+
+        ImGui::SFML::ProcessEvent(event);
 
         if (event.type == sf::Event::Closed) {
             quit();
@@ -129,6 +137,7 @@ void GameEngine::run() {
     while (isRunning()) {
         update();
     }
+    ImGui::SFML::Shutdown();
 }
 
 sf::RenderWindow &GameEngine::window() {

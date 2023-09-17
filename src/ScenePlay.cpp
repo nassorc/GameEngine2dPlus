@@ -166,8 +166,6 @@ void ScenePlay::sRender() {
 //        }
 //    }
 
-    // DISPLAY ENTITIES
-    m_game->window().display();
 }
 
 void ScenePlay::update() {
