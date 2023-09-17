@@ -1,0 +1,8 @@
+Texture texNature1 bin/assets/nature_1/1.png
+Texture texNature2 bin/assets/nature_1/2.png
+Texture texNature3 bin/assets/nature_1/3.png
+Texture texNature5 bin/assets/nature_1/5.png
+Texture texNature6 bin/assets/nature_1/6.png
+Texture texNature7 bin/assets/nature_1/7.png
+Texture texNature8 bin/assets/nature_1/8.png
+Texture texNature10 bin/assets/nature_1/10.png
