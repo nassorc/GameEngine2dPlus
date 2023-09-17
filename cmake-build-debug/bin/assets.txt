@@ -1,0 +1,77 @@
+Texture   TexStand    assets/images/character/stand64.png
+Texture   TexRun      assets/images/character/run64.png
+Texture   TexAir      assets/images/character/air64.png
+Texture   TexExplode  assets/images/misc/explosion.png
+Texture   TexGround   assets/images/world/ground.png
+Texture   TexBlock    assets/images/world/block.png
+Texture   TexBrick    assets/images/world/brick.png
+Texture   TexBush     assets/images/world/bush.png
+Texture   TexULE      assets/images/world/lakeULE.png
+Texture   TexURE      assets/images/world/lakeURE.png
+Texture   TexUT       assets/images/world/lakeUT.png
+Texture   TexM        assets/images/world/lakeM.png
+Texture   TexML       assets/images/world/lakeML.png
+Texture   TexMR       assets/images/world/lakeMR.png
+Texture   TexB        assets/images/world/lakeB.png
+Texture   TexBLE      assets/images/world/lakeBLE.png
+Texture   TexBRE      assets/images/world/lakeBRE.png
+Texture   TexTrunkBLE      assets/images/world/trunkBLE.png
+Texture   TexTrunkBRE      assets/images/world/trunkBRE.png
+Texture   TexTrunkTLE      assets/images/world/trunkTLE.png
+Texture   TexTrunkTRE      assets/images/world/trunkTRE.png
+Texture   TexTrunkT      assets/images/world/trunkT.png
+Texture   TexDoor      assets/images/world/door.png
+Texture   TexBridge      assets/images/world/bridge.png
+Texture   TexTile      assets/images/world/tile.png
+Texture   TexTreeBLE      assets/images/world/treeBLE.png
+Texture   TexTreeB      assets/images/world/treeB.png
+Texture   TexTreeBRE      assets/images/world/treeBRE.png
+Texture   TexTreeTLE      assets/images/world/treeTLE.png
+Texture   TexTreeTRE      assets/images/world/treeTRE.png
+Texture   TexTreeT      assets/images/world/treeT.png
+Texture   TexGuard      assets/images/character/guard.png
+Texture   TexStair      assets/images/world/stair.png
+Texture   TexSword      assets/images/misc/sword.png
+Texture   TexRunDown      assets/images/character/RunDown.png
+Texture   TexRunUp      assets/images/character/RunUp.png
+Texture   TexRunRight      assets/images/character/RunRight.png
+Texture   TexEnemy1      assets/images/character/enemy1.png
+
+Animation Enemy1     TexEnemy1      1   0
+Animation RunDown     TexRunDown      1   0
+Animation RunUp      TexRunUp       1   0
+Animation RunRight    TexRunRight     1   0
+Animation Sword       TexSword       1   0
+Animation Stari       TexStair       1   0
+Animation TrunkBLE    TexTrunkBLE    1   0
+Animation TrunkBRE    TexTrunkBRE    1   0
+Animation TrunkTLE    TexTrunkTLE    1   0
+Animation TrunkTRE    TexTrunkTRE    1   0
+Animation TrunkT    TexTrunkT    1   0
+Animation Door        TexDoor     1   0
+Animation Bridge       TexBridge     1   0
+Animation Tile       TexTile     1   0
+Animation TreeBLE       TexTreeBLE     1   0
+Animation TreeB       TexTreeB     1   0
+Animation TreeBRE       TexTree     1   0
+Animation TreeTLE       TexTreeTLE     1   0
+Animation TreeTRE       TexTreeTRE     1   0
+Animation TreeT       TexTreeT     1   0
+Animation Guard       TexGuard     1   0
+Animation LakeULE     TexULE       1   0
+Animation LakeURE     TexURE       1   0
+Animation LakeUT      TexUT        1   0
+Animation LakeM       TexM         1   0
+Animation LakeML       TexML         1   0
+Animation LakeMR       TexMR         1   0
+Animation LakeB       TexB         1   0
+Animation LakeBLE       TexBLE         1   0
+Animation LakeBRE       TexBRE         1   0
+Animation Stand       TexStand     1   0
+Animation Run         TexRun       4   10
+Animation Air         TexAir       1   0
+Animation Explosion   TexExplode   14  5
+Animation Ground      TexGround    1   0
+Animation Brick       TexBrick     1   0
+Animation Bush        TexBush      1   0
+Font      Tech        assets/fonts/bit.ttf

@@ -39,8 +39,9 @@ void GameEngine::init(const std::string &path) {
     m_window.create(sf::VideoMode(1280, 768), "Zelda");
     m_window.setFramerateLimit(60);
     // First scene
-    changeScene("MENU", std::make_shared<ScenePlayground>(this));
+//    changeScene("MENU", std::make_shared<ScenePlayground>(this));
 //    changeScene("MENU", std::make_shared<SceneParallax>(this, "bin/levelParallax.txt"));
+    changeScene("MENU", std::make_shared<SceneMenu>(this));
 }
 
 void GameEngine::update() {
