@@ -39,12 +39,12 @@ endif()
 
 if(CMAKE_INSTALL_COMPONENT STREQUAL "bin" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-build/lib/libsfml-system-d.2.5.1.dylib"
-    "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-build/lib/libsfml-system-d.2.5.dylib"
+    "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib"
+    "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-build/lib/libsfml-system-d.2.6.dylib"
     )
   foreach(file
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-system-d.2.5.1.dylib"
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-system-d.2.5.dylib"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-system-d.2.6.0.dylib"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libsfml-system-d.2.6.dylib"
       )
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")

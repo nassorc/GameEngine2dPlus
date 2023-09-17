@@ -57,6 +57,7 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE FILE FILES
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src/imgui-SFML.h"
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src/imgui-SFML_export.h"
+    "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src/imconfig-SFML.h"
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src/imconfig.h"
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src/imgui.h"
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src/imgui_internal.h"
@@ -64,7 +65,6 @@ if(CMAKE_INSTALL_COMPONENT STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src/imstb_textedit.h"
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src/imstb_truetype.h"
     "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src/misc/cpp/imgui_stdlib.h"
-    "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src/imconfig-SFML.h"
     )
 endif()
 

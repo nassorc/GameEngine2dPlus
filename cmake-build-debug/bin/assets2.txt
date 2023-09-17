@@ -1,6 +1,6 @@
-Texture TexCharacters bin/assets/zelda.png
-Texture TexEnemy      bin/assets/enemy.png
-Texture TexTiles      bin/assets/overworldtiles.png
+Texture TexCharacters ../bin/assets/zelda.png
+Texture TexEnemy      ../bin/assets/enemy.png
+Texture TexTiles      ../bin/assets/overworldtiles.png
 # Type Name Texture X Y NUM_FX NUM_FY Total_Frames Speed
 Animation Stand TexCharacters      16 0 0 1 0
 Animation StandUp TexCharacters  16 2 0 1 0
@@ -29,5 +29,5 @@ Animation GrassTR TexTiles         17 8 2 1 1 1 0
 Animation GrassBL TexTiles         17 6 3 1 1 1 0
 Animation GrassBM TexTiles         17 7 3 1 1 1 0
 Animation GrassBR TexTiles         17 8 3 1 1 1 0
-Font Bit bin/fonts/bit.ttf
+Font Bit ../bin/fonts/bit.ttf
 DefaultFont Bit

@@ -21,7 +21,7 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 
 include(ExternalProject)
 ExternalProject_Add(imgui-sfml-populate
-                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/SFML/imgui-sfml.git" "GIT_TAG" "2.6.x"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/SFML/imgui-sfml" "GIT_TAG" "v2.6"
                     SOURCE_DIR          "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src"
                     BINARY_DIR          "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-build"
                     CONFIGURE_COMMAND   ""

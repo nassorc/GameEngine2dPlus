@@ -10,10 +10,18 @@ cmake_minimum_required(VERSION 3.26.4)
 project(imgui-populate NONE)
 
 
+# Pass through things we've already detected in the main project to avoid
+# paying the cost of redetecting them again in ExternalProject_Add()
+set(GIT_EXECUTABLE [==[/opt/homebrew/bin/git]==])
+set(GIT_VERSION_STRING [==[2.42.0]==])
+set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
+  [==[/opt/homebrew/bin/git;2.42.0]==]
+)
+
 
 include(ExternalProject)
 ExternalProject_Add(imgui-populate
-                     "UPDATE_DISCONNECTED" "False" "DOWNLOAD_EXTRACT_TIMESTAMP" "FALSE" "URL" "https://github.com/ocornut/imgui/archive/v1.87.zip"
+                     "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/ocornut/imgui" "GIT_TAG" "v1.89.9"
                     SOURCE_DIR          "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src"
                     BINARY_DIR          "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-build"
                     CONFIGURE_COMMAND   ""

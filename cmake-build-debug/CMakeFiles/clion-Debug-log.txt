@@ -1,5 +1,7 @@
 /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -G Ninja -S /Users/macrossan/Code/CPP/Projects/lightcasting -B /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug
--- Found SFML 2.6.0 in /opt/homebrew/lib/cmake/SFML
--- Configuring done (0.0s)
+-- Fetching SFML...
+-- Fetching ImGui-SFML...
+-- Found ImGui v1.89.9 in /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src
+-- Configuring done (0.5s)
 -- Generating done (0.0s)
 -- Build files have been written to: /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug

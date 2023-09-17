@@ -62,7 +62,7 @@ set_target_properties(ImGui-SFML::ImGui-SFML PROPERTIES
   INTERFACE_COMPILE_DEFINITIONS "IMGUI_USER_CONFIG=\"imconfig-SFML.h\""
   INTERFACE_COMPILE_FEATURES "cxx_std_11"
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
-  INTERFACE_LINK_LIBRARIES "sfml-graphics;OpenGL::GL"
+  INTERFACE_LINK_LIBRARIES "sfml-graphics;sfml-system;sfml-window;/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework;/Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk/System/Library/Frameworks/OpenGL.framework"
 )
 
 if(CMAKE_VERSION VERSION_LESS 2.8.12)
@@ -104,7 +104,7 @@ unset(_cmake_import_check_targets)
 # Make sure the targets which have been exported in some other
 # export set exist.
 unset(${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE_targets)
-foreach(_target "sfml-graphics" )
+foreach(_target "sfml-graphics" "sfml-system" "sfml-window" )
   if(NOT TARGET "${_target}" )
     set(${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE_targets "${${CMAKE_FIND_PACKAGE_NAME}_NOT_FOUND_MESSAGE_targets} ${_target}")
   endif()
