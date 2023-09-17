@@ -171,12 +171,12 @@ void ScenePlay::sRender() {
 }
 
 void ScenePlay::update() {
-    sMovement();
     sAI();
-    sCollision();
+    sMovement();
     sAttack();
     sHealth();
     sLifespan();
+    sCollision();
     sCamera();
     sAnimation();
     sRender();
@@ -351,32 +351,35 @@ void ScenePlay::sCollision() {
     for (auto &e: m_entityManager.getEntities()) {
         if (!(e->hasComponent<CBoundingBox>())) { continue;}
         if (e->tag() == "PLAYER") { continue;}
-        auto& bBox = e->getComponent<CBoundingBox>();
+
         // BOUNDING BOX
+        auto& bBox = e->getComponent<CBoundingBox>();
+
+        // TILE PLAYER BOUNDING BOX COLLISION
         Vec2 collisionOverlap = m_physics.GetOverlap(m_player, e);
-        if (bBox.blockMovement && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+        if (e->tag() == "TILE" && bBox.blockMovement && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
             Vec2 collisionPrevOverlap = m_physics.GetPreviousOverlap(m_player, e);
             auto &playerPos = m_player->getComponent<CTransform>().pos;
             auto &ePos = e->getComponent<CTransform>().pos;
             // LEFT SIDE COLLISION
             if (collisionPrevOverlap.y > 0 && playerPos.x > ePos.x) {
                 m_player->getComponent<CTransform>().pos.x += collisionOverlap.x;
-                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
             }
                 // RIGHT SIDE COLLISION
             else if (collisionPrevOverlap.y > 0 && playerPos.x < ePos.x) {
                 m_player->getComponent<CTransform>().pos.x -= collisionOverlap.x;
-                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
             }
                 // TOP SIDE COLLISION
             else if (collisionPrevOverlap.x > 0 && playerPos.y < ePos.y) {
                 m_player->getComponent<CTransform>().pos.y -= collisionOverlap.y;
-                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
             }
                 // BOTTOM SIDE COLLISION
             else if (collisionPrevOverlap.x > 0 && playerPos.y > ePos.y) {
                 m_player->getComponent<CTransform>().pos.y += collisionOverlap.y;
-                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
             }
         }
 
@@ -423,7 +426,7 @@ void ScenePlay::sAnimation() {
     auto &state = m_player->getComponent<CState>().state;
     auto &animation = m_player->getComponent<CAnimation>().animation;
     auto &input = m_player->getComponent<CInput>();
-    std::cout << state << std::endl;
+
     if (state == "STANDING_DOWN")
         m_player->addComponent<CAnimation>(m_game->getAssets().getAnimation("Stand"));
     else if (state == "STANDING_UP")
@@ -467,11 +470,21 @@ void ScenePlay::spawnSword() {
     auto& pSize = m_player->getComponent<CAnimation>().animation.getSize();
     if(pState == "STANDING_RIGHT" || pState == "RUNNING_RIGHT") {
         sword->addComponent<CAnimation>(m_game->getAssets().getAnimation("SwordRight"));
-        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(32, 0), Vec2(0, 0), 0);
+        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(64, 0), Vec2(0, 0), 0);
+    }
+    else if(pState == "STANDING_LEFT" || pState == "RUNNING_LEFT") {
+        sword->addComponent<CAnimation>(m_game->getAssets().getAnimation("SwordLeft"));
+        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(-64, 0), Vec2(0, 0), 0);
+    }
+    else if(pState == "STANDING_UP" || pState == "RUNNING_UP") {
+        sword->addComponent<CAnimation>(m_game->getAssets().getAnimation("SwordUp"));
+        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(0, -64), Vec2(0, 0), 0);
+    }
+    else if(pState == "STANDING_DOWN" || pState == "RUNNING_DOWN") {
+        sword->addComponent<CAnimation>(m_game->getAssets().getAnimation("Sword"));
+        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(0, 64), Vec2(0, 0), 0);
     }
 }
-
-
 
 void ScenePlay::drawLine(const Vec2 &p1, const Vec2 &p2) {
     sf::Vertex line[] = {sf::Vector2f(p1.x, p1.y), sf::Vector2f(p2.x, p2.y)};
@@ -500,6 +513,15 @@ void ScenePlay::sAttack() {
             auto& pPos = m_player->getComponent<CTransform>().pos;
             if(pState == "STANDING_RIGHT" || pState == "RUNNING_RIGHT") {
                 e->getComponent<CTransform>().pos = pPos + Vec2(64, 0);
+            }
+            if(pState == "STANDING_LEFT" || pState == "RUNNING_LEFT") {
+                e->getComponent<CTransform>().pos = pPos + Vec2(-64, 0);
+            }
+            if(pState == "STANDING_UP" || pState == "RUNNING_UP") {
+                e->getComponent<CTransform>().pos = pPos + Vec2(0, -64);
+            }
+            if(pState == "STANDING_DOWN" || pState == "RUNNING_DOWN") {
+                e->getComponent<CTransform>().pos = pPos + Vec2(0, 64);
             }
         }
     }

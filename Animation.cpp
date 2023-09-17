@@ -22,7 +22,7 @@ Animation::Animation(const std::string &name, sf::Texture &tex, const Vec2 &tile
 
 void Animation::update() {
     if(m_speed > 0 && m_frameCount > 1) {
-        m_currentFrame = (m_totalFrames / 10) % m_frameCount;
+        m_currentFrame = (m_totalFrames / 6) % m_frameCount;
         m_sprite.setTextureRect(sf::IntRect(
                 m_loc.x * 16,
                 (m_loc.y * 16) + m_currentFrame * 16,

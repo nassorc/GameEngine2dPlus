@@ -1,0 +1,21 @@
+# ninja log v5
+0	12	1694923126357824504	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	e58c69df1dd1dd88
+5630	5640	1694923611787790000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	201518567ff3eb6d
+0	12	1694923126357824504	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-mkdir	e58c69df1dd1dd88
+0	11	1694923703646500000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	fb044a397cda744b
+5619	5630	1694923611777632000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	f357b8a122600f3d
+5640	5650	1694923611798316000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	56c2ed775be74624
+5680	5695	1694923611842880000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/CMakeFiles/sfml-populate-complete	7ef503c1beff5b30
+5619	5630	1694923611777632000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-update	f357b8a122600f3d
+5680	5695	1694923611842880000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	7ef503c1beff5b30
+5670	5680	1694923611828367000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	cfa00dc0fbab0eae
+0	11	1694923703646500000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-download	fb044a397cda744b
+5650	5661	1694923611808911000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	8ee3ee65dba58fab
+5640	5650	1694923611798316000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-configure	56c2ed775be74624
+5661	5670	1694923611818609000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	7856c6b3d07fbe68
+5650	5661	1694923611808911000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-build	8ee3ee65dba58fab
+5630	5640	1694923611787790000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-patch	201518567ff3eb6d
+5670	5680	1694923611828367000	sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-test	cfa00dc0fbab0eae
+5661	5670	1694923611818609000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-install	7856c6b3d07fbe68
+5680	5695	1694923611842880000	/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/sfml-populate-prefix/src/sfml-populate-stamp/sfml-populate-done	7ef503c1beff5b30
+5680	5695	1694923611842880000	CMakeFiles/sfml-populate-complete	7ef503c1beff5b30

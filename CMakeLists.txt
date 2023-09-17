@@ -1,13 +1,9 @@
 cmake_minimum_required(VERSION 3.26)
 project(lightcasting)
 
-#set(CMAKE_CXX_STANDARD 17)
-#
-#add_executable(lightcasting main.cpp)
-#
-#project(comp400-a4-migrated)
-
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+
+
 
 set(SOURCE_FILES main.cpp
         GameEngine.h
@@ -36,12 +32,15 @@ set(SOURCE_FILES main.cpp
         ScenePlayground.h
         SceneParallax.cpp
         SceneParallax.h
+        Index.h
 )
+
 add_executable(lightcasting ${SOURCE_FILES})
 include_directories(/usr/local/include)
 
 find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIRS})
-
+#add_subdirectory(external)
 
 target_link_libraries(lightcasting sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+#target_link_libraries(lightcasting sfml-system sfml-window sfml-graphics sfml-audio sfml-network ImGui-SFML::ImGui-SFML)

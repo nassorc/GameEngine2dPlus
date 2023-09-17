@@ -23,10 +23,10 @@ FetchContent_Declare(ImGui-SFML
         GIT_PROGRESS TRUE)
 FetchContent_MakeAvailable(ImGui-SFML)
 
-add_library(imgui_lib
+add_library(imgui_lib2
         "${imgui_SOURCE_DIR}/imgui.cpp"
         "${imgui_SOURCE_DIR}/imgui_draw.cpp"
         "${imgui_SOURCE_DIR}/imgui_tables.cpp"
         "${imgui_SOURCE_DIR}/imgui_widgets.cpp")
-#add_library(ImPlot::ImPlot ALIAS ImPlot)
-target_include_directories(imgui_lib PUBLIC "${imgui_SOURCE_DIR}")
+
+target_include_directories(imgui_lib2 PUBLIC "${imgui_SOURCE_DIR}")

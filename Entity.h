@@ -1,9 +1,23 @@
 #pragma once
 
-#include "Components.h"
 #include <tuple>
+#include "Components.h"
+#include "Index.h"
 
 class EntityManager;
+
+template <class T, class Tuple>
+struct Index;
+
+template <class T, class... Types>
+struct Index<T, std::tuple<T, Types...>> {
+    static const std::size_t value = 0;
+};
+
+template <class T, class U, class... Types>
+struct Index<T, std::tuple<U, Types...>> {
+    static const std::size_t value = 1 + Index<T, std::tuple<Types...>>::value;
+};
 
 typedef std::tuple<
 	CTransform,
@@ -46,7 +60,7 @@ public:
 	}
 	template<class T>
 	inline T& getComponent() {
-		return std::get<T>(m_components);
+		return std::get<Index<T, ComponentTuple>::value>(m_components);
 	}
 
 	template<class T>

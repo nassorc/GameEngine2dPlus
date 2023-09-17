@@ -13,6 +13,8 @@ Animation RunRight TexCharacters   16 3 0 2 10
 Animation AttackDown TexCharacters 16 0 2 1 0
 
 Animation Sword TexCharacters      16 4 0 1 0
+Animation SwordUp TexCharacters      16 5 0 1 0
+Animation SwordLeft TexCharacters      16 6 0 1 0
 Animation SwordRight TexCharacters      16 7 0 1 0
 Animation Heart TexCharacters      16 8 0 1 0
 

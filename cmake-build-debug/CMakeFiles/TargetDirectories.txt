@@ -1,3 +1,5 @@
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/CMakeFiles/lightcasting.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/CMakeFiles/package.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/CMakeFiles/package_source.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/CMakeFiles/edit_cache.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/CMakeFiles/rebuild_cache.dir
