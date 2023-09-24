@@ -1,0 +1,39 @@
+{
+  "window": {
+    "name": "Not Zelda",
+    "width": 1280,
+    "height": 768,
+    "is_fullscreen": true
+  },
+  "game": {
+    "frame_limit": 60,
+    "startup_font": "Bit",
+    "global_tile_size": {
+      "width": 64,
+      "height": 64
+    },
+    "controls": [
+      {
+        "name": "Move Up",
+        "action": "Up",
+        "binding": "W"
+      },
+      {
+        "name": "Move Left",
+        "action": "Left",
+        "binding": "A"
+      },
+
+      {
+        "name": "Move Down",
+        "action": "Down",
+        "binding": "S"
+      },
+      {
+        "name": "Move Right",
+        "action": "Right",
+        "binding": "D"
+      }
+    ]
+  }
+}

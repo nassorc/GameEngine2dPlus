@@ -15,9 +15,11 @@ Vec2 Physics::GetOverlap(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
     auto &posB = b->getComponent<CTransform>().pos;
     auto &hSizeA = a->getComponent<CBoundingBox>().halfSize;
     auto &hSizeB = b->getComponent<CBoundingBox>().halfSize;
+    auto &offsetA = a->getComponent<CBoundingBox>().offset;
+    auto &offsetB = b->getComponent<CBoundingBox>().offset;
 
     // distance between entity a and b in the x and y direction
-    Vec2 delta{abs(posA.x - posB.x), abs(posA.y - posB.y)};
+    Vec2 delta{abs((posA.x + offsetA.x) - (posB.x + offsetB.x)), abs((posA.y + offsetA.y) - (posB.y + offsetB.y))};
 
     // compute overlap in x-direction and y-direction
     float ox{(hSizeA.x + hSizeB.x) - delta.x};
@@ -39,8 +41,10 @@ Vec2 Physics::GetPreviousOverlap(std::shared_ptr<Entity> a, std::shared_ptr<Enti
     auto &posB = b->getComponent<CTransform>().pos;
     auto &hSizeA = a->getComponent<CBoundingBox>().halfSize;
     auto &hSizeB = b->getComponent<CBoundingBox>().halfSize;
+    auto &offsetA = a->getComponent<CBoundingBox>().offset;
+    auto &offsetB = b->getComponent<CBoundingBox>().offset;
     // solve dx and dy, distance between entity a and b
-    Vec2 delta{abs(posA.x - posB.x), abs(posA.y - posB.y)};
+    Vec2 delta{abs((posA.x + offsetA.x) - (posB.x + offsetB.x)), abs((posA.y + offsetA.y) - (posB.y + offsetB.y))};
 
     // compute overlap in x-direction and y-direction
     float ox{(hSizeA.x + hSizeB.x) - delta.x};

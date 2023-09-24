@@ -14,8 +14,8 @@
 //    &
 //};
 
-ScenePlayground::ScenePlayground(GameEngine *gameEngine)
-    : Scene(gameEngine)
+ScenePlayground::ScenePlayground(GameEngine *gameEngine, Assets &assetManager)
+    : Scene(gameEngine, assetManager)
     {
     init();
 }
@@ -30,8 +30,7 @@ void ScenePlayground::init() {
     e2->addComponent<CShape>(p2, m_backgroundColor);
 
     auto e3 = m_entityManager.addEntity("shape");
-    Vec2 wSize(m_game->window().getSize().x, m_game->window().getSize().y);
-//    std::vector<Vec2> p3 = {Vec2(50, 50), Vec2(50, wSize.y - 50)};
+    Vec2 wSize = m_game->getWindowSize();
     std::vector<Vec2> p3 = {Vec2(0, 0), Vec2(wSize.x, 0), wSize + Vec2(0, 0), Vec2(0, wSize.y)};
     e3->addComponent<CShape>(p3, sf::Color(255,255,255,0));
 
@@ -51,7 +50,7 @@ void ScenePlayground::sDoAction(const Action &action) {
 }
 
 void ScenePlayground::sRender() {
-    m_game->window().clear(m_backgroundColor);
+    m_game->clearWindow(m_backgroundColor);
     if(m_drawGrid) {
         drawGrid();
     }
@@ -66,7 +65,6 @@ void ScenePlayground::sRender() {
     drawLight();
     drawCursor();
     drawCursorTextPos();
-    m_game->window().display();
 }
 
 void ScenePlayground::onEnd() {
@@ -90,7 +88,7 @@ void ScenePlayground::drawLine(const Vec2 &p1, const Vec2 &p2, sf::Color color) 
 }
 
 void ScenePlayground::drawGrid() {
-    Vec2 windowSize (m_game->window().getSize().x, m_game->window().getSize().y);
+    Vec2 windowSize = m_game->getWindowSize();
     float gridSize = 64;
     float maxCols = windowSize.x / gridSize;
     float maxRows = windowSize.y / gridSize;
@@ -113,7 +111,7 @@ void ScenePlayground::drawCursor() {
 void ScenePlayground::drawCursorTextPos() {
     // mouse position
     std::string loc = std::to_string(m_mousePos.x) + ", " + std::to_string(m_mousePos.y);
-    sf::Text text(loc, m_game->getAssets().getDefaultFont(), 18);
+    sf::Text text(loc, m_assetManager.getDefaultFont(), 18);
     text.setFillColor(sf::Color::Black);
     m_game->window().draw(text);
 }
@@ -155,7 +153,7 @@ void ScenePlayground::drawLight() {
     }
 
     Vec2 mousePos = m_mousePos;
-    Vec2 windowPos = Vec2((float) m_game->window().getSize().x,(float) m_game->window().getSize().y);
+    Vec2 windowPos = m_game->getWindowSize();
     std::sort(all.begin(), all.end(), [mousePos](Vec2& a, Vec2& b) {
         // SORT BY DEGREES RELATIVE TO MOUSE POINTER POSITION
 
@@ -211,17 +209,17 @@ void ScenePlayground::drawLight() {
 //        for (size_t idx=0; idx < all.size(); idx++) {
 //            light.setPoint(idx, sf::Vector2f(all[idx].x, all[idx].y));
 //        }
-//        m_game->window().draw(light);
+//        m_canvas->window().draw(light);
 
         // DRAW RAY NUMBER ================================================
 //        for (size_t idx=0; idx < all.size(); idx++) {
-//            sf::Text t(std::to_string(idx), m_game->getAssets().getDefaultFont(), 8);
+//            sf::Text t(std::to_string(idx), m_canvas->getAssets().getDefaultFont(), 8);
 //            t.setFillColor(sf::Color::Black);
 //            Vec2 delta = all[idx] - m_mousePos;
 //            Vec2 normalized = (delta.normalize(delta.distance())).scale(12 * idx);
 //            Vec2 newV = all[idx] + normalized;
 //            t.setPosition(newV.x, newV.y);
-//            m_game->window().draw(t);
+//            m_canvas->window().draw(t);
 //        }
     }
 

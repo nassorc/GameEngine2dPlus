@@ -1,4 +1,9 @@
 # Tile aniName rx ry tx ty bm bv
+Tile Blue 0 0 0 0 1 1
+Tile BlueAttack 0 0 0 1 1 1
+Tile BlueRun 0 0 0 2 1 1
+Tile BlueJump 0 0 0 3 1 1
+Tile BlueDie 0 0 0 4 1 1
 Tile GrassTL 0 0 3 2 1 1
 Tile GrassTM 0 0 4 2 1 1
 Tile GrassTR 0 0 5 2 1 1
@@ -16,4 +21,4 @@ Tile Bush -3 0 0 0 1 1
 NPC Enemy2 0 0 1 1 1 1 3 2 Follow 3
 NPC Enemy1 0 0 6 8 1 1 3 1 Patrol 3 4 6 8 8 8 8 6 10 6
 # x y cx cy s mh
-Player 640 360 48 48 6 3
+Player 640 360 48 48 5 3

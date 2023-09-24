@@ -12,6 +12,11 @@
 #include <string>
 #include <memory>
 #include <iostream>
+#include <sstream>
+
+#include <fstream>
+#include <nlohmann/json.hpp>
+using json = nlohmann::json;
 
 
 #include <imgui.h>
@@ -34,27 +39,38 @@ GameEngine::GameEngine(const std::string &path) {
 }
 
 void GameEngine::init(const std::string &path) {
-    // load asset
-    if(!path.empty()) {
-        m_assets.loadFromFile(path);
-    }
+    // load configuration file
+    m_fileReader.openFile(path);
 
-    m_window.create(sf::VideoMode(1280, 768), "Zelda");
-    m_window.setFramerateLimit(60);
+    json config = json::parse(m_fileReader.readFileContents());
+    std::cout << config << std::endl;
+    // load settings
+    json settings = json::parse(openFile(config[STARTUP_PREFERENCE_KEY]));
+
+    json window = settings[WINDOW_KEY];
+    json game   = settings[GAME_SETTINGS_KEY];
+
+    unsigned int frameLimit   = game[FRAME_LIMIT_KEY];
+    unsigned int windowWidth  = window[WINDOW_WIDTH_KEY];
+    unsigned int windowHeight = window[WINDOW_HEIGHT_KEY];
+    std::string windowName    = window[WINDOW_NAME_KEY];
+
+    m_window.create(sf::VideoMode( windowWidth, windowHeight), windowName);
+    m_window.setFramerateLimit(frameLimit);
+
+    // load startup assets
+//    m_assets.loadFromFile(config[STARTUP_ASSETS_KEY]);
+    m_assets.loadFromFile(config[STARTUP_ASSETS_KEY]);
     ImGui::SFML::Init(m_window);
     // First scene
 //    changeScene("MENU", std::make_shared<ScenePlayground>(this));
 //    changeScene("MENU", std::make_shared<SceneParallax>(this, "../bin/levelParallax.txt"));
-    changeScene("MENU", std::make_shared<SceneMenu>(this));
+    changeScene("MENU", std::make_shared<SceneMenu>(this, m_assets));
 }
 
 void GameEngine::update() {
     sUserInput();
     currentScene()->update();
-    ImGui::SFML::Update(m_window, m_dt.restart());
-    ImGui::ShowDemoWindow();
-    ImGui::SFML::Render(m_window);
-
     // DISPLAY ENTITIES
     m_window.display();
 }
@@ -62,8 +78,6 @@ void GameEngine::update() {
 void GameEngine::sUserInput() {
     sf::Event event;
     while (m_window.pollEvent(event)) {
-
-        ImGui::SFML::ProcessEvent(event);
 
         if (event.type == sf::Event::Closed) {
             quit();
@@ -92,32 +106,10 @@ void GameEngine::sUserInput() {
 
         }
 
-        // mouse inputs are not mapped
-        // mouse position is relative to the window
-        // sf::Vector2f mpos(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).y);
-
-        Vec2 mPos(sf::Mouse::getPosition(m_window).x, sf::Mouse::getPosition(m_window).x);
-         if (event.type == sf::Event::MouseMoved) {
-         	currentScene()->doAction(Action("MOUSE_MOVE", "START", Vec2(event.mouseMove.x, event.mouseMove.y)));
-         }
-
-        // if (event.type == sf::Event::MouseButtonPressed) {
-        // 	switch (event.mouseButton.button) {
-        // 	case sf::Mouse::Left: { currentScene()->doAction(Action("LEFT_CLICK", "START", mpos)); break; }
-        // 	case sf::Mouse::Middle: {break; }
-        // 	case sf::Mouse::Right: {break; }
-        // 	}
-        // }
+        if (event.type == sf::Event::MouseMoved) {
+            currentScene()->doAction(Action("MOUSE_MOVE", "START", Vec2(event.mouseMove.x, event.mouseMove.y)));
+        }
     }
-
-//  m_window.clear(sf::Color(18, 218, 40));
-//  // sf::Sprite sprite(m_assets.getTexture("TexCharacters"), sf::IntRect(0, 0, 16, 16));
-//  // sprite.setScale(5, 5);
-//  auto& s = m_assets.getAnimation("Stair");
-//  s.getSprite().setScale(4, 4);
-//  m_window.draw(s.getSprite());
-//  m_window.display();
-
 }
 
 std::shared_ptr<Scene> GameEngine::currentScene() {
@@ -137,7 +129,6 @@ void GameEngine::run() {
     while (isRunning()) {
         update();
     }
-    ImGui::SFML::Shutdown();
 }
 
 sf::RenderWindow &GameEngine::window() {
@@ -150,4 +141,16 @@ bool GameEngine::isRunning() {
 
 Assets &GameEngine::getAssets() {
     return m_assets;
+}
+
+std::string GameEngine::openFile(const std::string &path) {
+    std::ifstream fin(path);
+    std::stringstream buffer;
+
+    if(!fin.is_open()) {
+        std::cout << "Cannot not open configuration file" << std::endl;
+        exit(-1);
+    }
+    buffer << fin.rdbuf();
+    return buffer.str();
 }

@@ -3,12 +3,23 @@
 #include "Scene.h"
 #include "Assets.h"
 #include "SFML/Graphics.hpp"
+#include "FileReader.h"
 
 #include <map>
 #include <string>
 #include <memory>
 #include <iostream>
 typedef std::map<std::string, std::shared_ptr<Scene>> SceneMap;
+
+
+static const std::string STARTUP_PREFERENCE_KEY = "startup_preferences_file";
+static const std::string STARTUP_ASSETS_KEY = "startup_assets_file";
+static const std::string WINDOW_KEY = "window";
+static const std::string WINDOW_NAME_KEY = "name";
+static const std::string WINDOW_WIDTH_KEY = "width";
+static const std::string WINDOW_HEIGHT_KEY = "height";
+static const std::string GAME_SETTINGS_KEY = "game";
+static const std::string FRAME_LIMIT_KEY = "frame_limit";
 
 class GameEngine {
 protected:
@@ -19,11 +30,14 @@ protected:
 	size_t              m_simulationSpeed = 1;
 	bool                m_running = true;
     sf::Clock           m_dt;
+    FileReader          m_fileReader;
 
 	void init(const std::string& path);
 	void update();
 	void sUserInput();
 	std::shared_ptr<Scene> currentScene();
+
+    std::string openFile(const std::string& path);
 
 public:
 	GameEngine(const std::string& path);
@@ -31,6 +45,29 @@ public:
 	void quit();
 	void run();
 	sf::RenderWindow& window();
+    void clearWindow(sf::Color color) {
+        m_window.clear(color);
+    }
+    void draw(const sf::Sprite& e) {
+        m_window.draw(e);
+    }
+    void draw(const sf::RectangleShape& e) {
+        m_window.draw(e);
+    }
+    void draw(const sf::CircleShape& e) {
+        m_window.draw(e);
+    }
+    void draw(const sf::Text e)  {
+        m_window.draw(e);
+    }
+    Vec2 getWindowSize() {
+        return Vec2{(float) m_window.getSize().x, (float) m_window.getSize().y};
+    }
+    void setView(const sf::View& view) {
+        m_window.setView(view);
+    }
+
+
 	// const Assets& assets() const;
 	bool isRunning();
 	Assets& getAssets();

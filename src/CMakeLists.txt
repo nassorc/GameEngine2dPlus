@@ -27,7 +27,17 @@ set(SOURCE_FILES main.cpp
         SceneParallax.cpp
         SceneParallax.h
         Index.h
+        FileReader.cpp
+        FileReader.h
+        EntityFactory.cpp
+        EntityFactory.h
+        Camera.cpp
+        Camera.h
+        PlayerCamera.cpp
+        PlayerCamera.h
+        LevelEntityParser.cpp
+        LevelEntityParser.h
 )
 
 add_executable(lightcasting ${SOURCE_FILES})
-target_link_libraries(lightcasting PRIVATE ImGui-SFML::ImGui-SFML )
+target_link_libraries(lightcasting PRIVATE ImGui-SFML::ImGui-SFML nlohmann_json::nlohmann_json)

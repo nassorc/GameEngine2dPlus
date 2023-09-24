@@ -1,0 +1,16 @@
+{
+  "textures": [
+    {
+      "name": "background1",
+      "path": "../bin/assets/oak_woods_v1.0/background/background_layer_1.png"
+    },
+    {
+      "name": "background2",
+      "path": "../bin/assets/oak_woods_v1.0/background/background_layer_2.png"
+    },
+    {
+      "name": "background3",
+      "path": "../bin/assets/oak_woods_v1.0/background/background_layer_3.png"
+    }
+  ]
+}

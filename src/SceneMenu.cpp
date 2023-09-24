@@ -2,13 +2,11 @@
 
 #include "Scene.h"
 #include "ScenePlay.h"
-#include <map>
-#include <deque>
 #include <array>
 #include "GameEngine.h"
 
-SceneMenu::SceneMenu(GameEngine *gameEngine)
-    : Scene(gameEngine)
+SceneMenu::SceneMenu(GameEngine *gameEngine, Assets &assetManager)
+    : Scene(gameEngine, assetManager)
 {
     init();
 }
@@ -22,7 +20,7 @@ void SceneMenu::init() {
 
     // setups : loading font sizes and data to display
     auto entity = m_entityManager.addEntity("TEXT");
-    entity->addComponent<CText>(sf::Text("Zelda", m_game->getAssets().getDefaultFont(), 24));
+    entity->addComponent<CText>(sf::Text("Zelda", m_assetManager.getDefaultFont(), 24));
 }
 
 void SceneMenu::update() {
@@ -44,8 +42,8 @@ void SceneMenu::sDoAction(const Action &action) {
             // if (m_selectedMenuIndex < 2) m_selectedMenuIndex++;
             // else m_selectedMenuIndex = 0;
         } else if (action.name() == "ENTER") {
-            m_game->changeScene("PLAY", std::make_shared<ScenePlay>(m_game, "../bin/testlevel.txt"));
-            // m_game->changeScene("PLAY", std::make_shared<Scene_Play>(m_game, m_menuLevelPaths[m_selectedMenuIndex]));
+            m_game->changeScene("PLAY", std::make_shared<ScenePlay>(m_game, m_assetManager, "../bin/testlevel.txt"));
+            // m_canvas->changeScene("PLAY", std::make_shared<Scene_Play>(m_canvas, m_menuLevelPaths[m_selectedMenuIndex]));
         } else if (action.name() == "BACK") {
             m_game->quit();
         }
@@ -74,7 +72,7 @@ void SceneMenu::sRender() {
     // m_fontEntities.at(m_selectedMenuIndex).setFillColor(sf::Color(0, 0, 0));
 
     // // DRAW SELECTABLE ITEMS
-    // m_game->window().draw(m_fontEntities.at(0));
-    // m_game->window().draw(m_fontEntities.at(1));
-    // m_game->window().draw(m_fontEntities.at(2));
+    // m_canvas->window().draw(m_fontEntities.at(0));
+    // m_canvas->window().draw(m_fontEntities.at(1));
+    // m_canvas->window().draw(m_fontEntities.at(2));
 }

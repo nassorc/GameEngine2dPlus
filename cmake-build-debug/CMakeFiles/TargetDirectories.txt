@@ -82,6 +82,14 @@
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-build/CMakeFiles/install.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-build/CMakeFiles/install/local.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-build/CMakeFiles/install/strip.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/package.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/package_source.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/edit_cache.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/rebuild_cache.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/list_install_components.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/install.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/install/local.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/install/strip.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/src/CMakeFiles/lightcasting.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/src/CMakeFiles/package.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/src/CMakeFiles/package_source.dir

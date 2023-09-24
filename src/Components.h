@@ -12,6 +12,23 @@ public:
     Component() {}
 };
 
+class CParallax : public Component {
+public:
+    Vec2 parallax{1, 1};
+    CParallax () {}
+    CParallax (float x, float y) : parallax(Vec2{x, y}) {
+        this->has = true;
+    }
+};
+
+class CZIndex : public Component {
+    int zIndex = 1;
+    CZIndex() {}
+    CZIndex(int idx) : zIndex(idx) {
+        this->has = true;
+    }
+};
+
 // contains data on where an entities is, how fast it's going, and the rotation
 class CTransform : public Component {
 public:
@@ -56,7 +73,9 @@ public:
     bool left = false;
     bool right = false;
     bool down = false;
+    bool attack = false;
     bool canAttack = true;
+    bool canJump = true;
 
     CInput() {
         this->has = true;
@@ -98,8 +117,9 @@ public:
 
 class CBoundingBox : public Component {
 public:
-    Vec2 size = {0.0f, 0.0f};
-    Vec2 halfSize = {0.0f, 0.0f};
+    Vec2 size {0.0f, 0.0f};
+    Vec2 halfSize {0.0f, 0.0f};
+    Vec2 offset {0.0f, 0.0f};
     bool blockMovement = false;
     bool blockVision = false;
 
@@ -109,6 +129,15 @@ public:
         , halfSize(s.x / 2, s.y / 2)
         , blockMovement(bm)
         , blockVision(bv)
+    {
+        has = true;
+    }
+    CBoundingBox(const Vec2 &s, const Vec2 &o, bool bm, bool bv)
+            : size(s)
+            , halfSize(s.x / 2, s.y / 2)
+            , blockMovement(bm)
+            , blockVision(bv)
+            , offset(o)
     {
         has = true;
     }
@@ -127,6 +156,17 @@ public:
     }
 };
 
+class CSprite : public Component {
+public:
+    sf::Sprite sprite;
+
+    CSprite() {}
+    CSprite(sf::Sprite &sprite) : sprite(sprite) {
+        has = true;
+    }
+};
+
+
 class CGravity : public Component {
     // gravity is added to the velocity
     // ctransform.velocity.y += gravity
@@ -139,6 +179,14 @@ public:
             : gravity(g) {
         has = true;
     }
+};
+
+enum PlayerState {
+    IDLE,
+    RUNNING,
+    JUMPING,
+    ATTACKING,
+    HIT
 };
 
 // CState will determine the state and animation of the entity

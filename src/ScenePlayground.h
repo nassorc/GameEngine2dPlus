@@ -15,8 +15,9 @@ private:
     Vec2            m_mousePos = Vec2(0,0);
     Physics         m_physics;
 
+
 public:
-    ScenePlayground(GameEngine* gameEngine);
+    ScenePlayground(GameEngine *gameEngine, Assets &assetManager);
     void init();
     void update() override;
     void sDoAction(const Action &action) override;

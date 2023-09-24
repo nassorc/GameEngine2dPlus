@@ -11,41 +11,45 @@ const size_t TILE_SIZE = 64;
 Animation::Animation() {
 }
 
-Animation::Animation(const std::string &name, sf::Texture &tex, const Vec2 &tileSize, const Vec2& loc)
-        : m_name(name), m_sprite(tex), m_size(tileSize), m_loc(loc) {
-    float scalarX = m_size.x * (m_size.x / TILE_SIZE);
-    float scalarY = m_size.y * (m_size.y / TILE_SIZE);
-    m_sprite.setScale(scalarX, scalarY);
-    m_sprite.setOrigin(m_size.x / 2, m_size.y / 2);
-    m_sprite.setTextureRect(sf::IntRect(16 * loc.x, 16 * loc.y, 16, 16));
+Animation::Animation(const std::string &name, sf::Texture &tex, const Vec2 &tileSize, const std::vector<Vec2>& frames)
+        : m_name(name)
+        , m_sprite(tex)
+        , m_tileSize(tileSize)
+        , m_frames(frames)
+{
+    if(m_frames.size() > 0) {
+        m_sprite.setTextureRect(sf::IntRect(m_tileSize.x * m_frames[0].x, m_tileSize.y * m_frames[0].y, m_tileSize.x, m_tileSize.y));
+        /*
+         *  TILES ARE CORRECTLY SIZED, not decorations and players.
+         */
+        m_sprite.setScale((float) 64/24, (float) 64/24);
+        m_sprite.setOrigin(tileSize.x / 2, tileSize.y / 2);
+        m_frameCount = m_frames.size();
+    }
 }
 
 void Animation::update() {
     if(m_speed > 0 && m_frameCount > 1) {
-        m_currentFrame = (m_totalFrames / 6) % m_frameCount;
+        // loop through each frame
+        int m_currentFrame = (m_totalFrames / m_speed) % m_frameCount;
+        const Vec2& frame = m_frames[m_currentFrame];
         m_sprite.setTextureRect(sf::IntRect(
-                m_loc.x * 16,
-                (m_loc.y * 16) + m_currentFrame * 16,
-                m_frameSize.x,
-                m_frameSize.y
+                frame.x * m_tileSize.x,
+                frame.y * m_tileSize.y,
+                m_tileSize.x,
+                m_tileSize.y
         ));
-        // when player moves, it resets to zeror, then never increments. The functions
-        // seems to enter the condition
         m_totalFrames++;
     }
 }
 
 Vec2 &Animation::getSize() {
-    return m_size;
+    return m_tileSize;
 }
 
-Vec2 &Animation::getFrameSize() {
-    return m_frameSize;
-}
-
-Vec2 &Animation::getLocationInSpriteSheet() {
-    return m_loc;
-}
+//Vec2 &Animation::getFrameSize() {
+//    return m_frameSize;
+//}
 
 sf::Sprite &Animation::getSprite() {
     return m_sprite;
@@ -55,21 +59,9 @@ void Animation::setSpeed(size_t speed) {
     m_speed = speed;
 }
 
-void Animation::setFrameSize(size_t size) {
-    m_frameSize = Vec2{(float) size, (float) size};
-}
-
-void Animation::setFrameCount(size_t frameCount) {
-    m_frameCount = frameCount;
-}
-
-void Animation::setLocationInSprite(float x, float y) {
-    m_loc = Vec2{x, y};
-}
-
-void Animation::setLocationInSprite(const Vec2 &loc) {
-    m_loc = loc;
-}
+//void Animation::setFrameSize(size_t size) {
+//    m_frameSize = Vec2{(float) size, (float) size};
+//}
 
 std::string &Animation::getName() {
     return m_name;

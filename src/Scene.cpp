@@ -5,9 +5,9 @@
 #include <iostream>
 #include <map>
 
-Scene::Scene(GameEngine* gameEngine) {
-  m_game = gameEngine;
-}
+Scene::Scene(GameEngine *gameEngine, Assets &assetManager)
+    : m_game(gameEngine)
+    , m_assetManager(assetManager) {}
 
 void Scene::setPaused(bool paused) {
   m_paused = paused;

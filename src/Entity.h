@@ -34,7 +34,9 @@ typedef std::tuple<
     CPatrol,
     CFollowPlayer,
     CText,
-    CShape
+    CShape,
+    CSprite,
+    CParallax
 > ComponentTuple;
 
 // how to get a specfic component without an identifier:

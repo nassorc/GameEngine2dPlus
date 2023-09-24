@@ -24,7 +24,7 @@ private:
     sf::View       m_camera = sf::View(m_game->window().getDefaultView());
 
 public:
-    SceneParallax(GameEngine* gameEngine, const std::string& config);
+    SceneParallax(GameEngine *gameEngine, Assets &assetManager, const std::string &config);
     void init(const std::string& config);
     void update() override;
     void sDoAction(const Action &action) override;

@@ -1,15 +1,15 @@
 
 #include "SceneParallax.h"
 
-SceneParallax::SceneParallax(GameEngine *gameEngine, const std::string& config)
-        : Scene(gameEngine) {
+SceneParallax::SceneParallax(GameEngine *gameEngine, Assets &assetManager, const std::string &config)
+        : Scene(gameEngine, assetManager) {
     init(config);
 }
 
 void SceneParallax::init(const std::string& config) {
-    m_game->getAssets().loadFromFile(config);
-    auto windowSize = m_game->window().getSize();
-    Vec2 intialSize(m_game->getAssets().getTexture("texNature1").getSize().x, m_game->getAssets().getTexture("texNature1").getSize().y);
+    m_assetManager.loadFromFile(config);
+    Vec2 windowSize = m_game->getWindowSize();
+    Vec2 intialSize(m_assetManager.getTexture("texNature1").getSize().x, m_assetManager.getTexture("texNature1").getSize().y);
     Vec2 texSize{intialSize.x, intialSize.y};
 
     Vec2 ratio{windowSize.x / texSize.x, windowSize.y / texSize.y};
@@ -17,7 +17,7 @@ void SceneParallax::init(const std::string& config) {
     for(size_t idx=0; idx<10; idx++) {
         if(idx == 3 || idx == 8) { continue;}
         std::string tName = "texNature" + std::to_string(idx+1);
-        sf::Sprite layer(m_game->getAssets().getTexture(tName), sf::IntRect(0,0,windowSize.x * 10, windowSize.y));
+        sf::Sprite layer(m_assetManager.getTexture(tName), sf::IntRect(0, 0, windowSize.x * 10, windowSize.y));
         layer.scale(ratio.x, ratio.y);
         layers.push_back(layer);
     }
@@ -91,7 +91,7 @@ void SceneParallax::sMovement() {
 }
 
 void SceneParallax::sRender() {
-    m_game->window().clear(m_backgroundColor);
+    m_game->clearWindow(m_backgroundColor);
 
     // DRAW BACKGROUND ==================================================
     for(size_t idx=0; idx<layers.size(); idx++) {
@@ -116,8 +116,6 @@ void SceneParallax::sRender() {
             m_game->window().draw(shape);
         }
     }
-
-    m_game->window().display();
 }
 
 void SceneParallax::onEnd() {

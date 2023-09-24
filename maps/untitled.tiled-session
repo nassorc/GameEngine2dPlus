@@ -1,0 +1,51 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "untitled.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
+        "untitled.tmx": {
+            "expandedGroupLayers": [
+                8,
+                6
+            ],
+            "scale": 1.8374,
+            "selectedLayer": 7,
+            "viewCenter": {
+                "x": 105.85610101229999,
+                "y": 170.62153042342442
+            }
+        },
+        "untitled.tmx#store": {
+            "scaleInDock": 1
+        },
+        "untitled.tmx#world_tileset": {
+            "scaleInDock": 1.019
+        }
+    },
+    "last.exportedFilePath": "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/bin/config",
+    "last.imagePath": "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/bin/assets/oak_woods_v1.0/decorations",
+    "map.lastUsedExportFilter": "JSON map files (*.tmj *.json)",
+    "map.lastUsedFormat": "tmx",
+    "map.tileWidth": 24,
+    "openFiles": [
+        "untitled.tmx"
+    ],
+    "project": "untitled.tiled-project",
+    "property.type": "bool",
+    "recentFiles": [
+        "untitled.tmx"
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 128,
+        "width": 118
+    }
+}
