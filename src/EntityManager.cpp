@@ -8,6 +8,10 @@
 #include <variant>
 
 
+EntityManager::EntityManager()
+{
+}
+
 void EntityManager::removeDeadEntities(EntityVector& vec) 
 {
   auto itr = std::remove_if(vec.begin(), vec.end(), [](const std::shared_ptr<Entity>& e) {
@@ -15,10 +19,6 @@ void EntityManager::removeDeadEntities(EntityVector& vec)
   });
 
   vec.erase(itr, vec.end());
-}
-
-EntityManager::EntityManager() 
-{
 }
 
 void EntityManager::init() 

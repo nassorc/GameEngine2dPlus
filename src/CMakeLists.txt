@@ -29,14 +29,20 @@ set(SOURCE_FILES main.cpp
         Index.h
         FileReader.cpp
         FileReader.h
-        EntityFactory.cpp
-        EntityFactory.h
         Camera.cpp
         Camera.h
-        PlayerCamera.cpp
-        PlayerCamera.h
-        LevelEntityParser.cpp
-        LevelEntityParser.h
+        TargetCamera.cpp
+        TargetCamera.h
+        LevelLoader.cpp
+        LevelLoader.h
+        ImageLevelLoader.cpp
+        ImageLevelLoader.h
+        TilesetLevelLoader.cpp
+        TilesetLevelLoader.h
+        WorldObjectsLevelLoader.cpp
+        WorldObjectsLevelLoader.h
+        SceneBattle.cpp
+        SceneBattle.h
 )
 
 add_executable(lightcasting ${SOURCE_FILES})

@@ -36,7 +36,13 @@ typedef std::tuple<
     CText,
     CShape,
     CSprite,
-    CParallax
+    CParallax,
+    CDialogue,
+    CFrameCollision,
+    CMovable,
+    CHitbox,
+    CRect,
+    CCollide
 > ComponentTuple;
 
 // how to get a specfic component without an identifier:
@@ -74,6 +80,14 @@ public:
 	inline bool hasComponent() const {
 		return getComponent<T>().has;
 	}
+
+    template<class T, class... TArgs>
+    inline Entity& add(TArgs&&... mArgs) {
+        auto& component = getComponent<T>();
+        component = T(std::forward<TArgs>(mArgs)...);
+        component.has = true;
+        return *this;
+    }
 
 //	template<class T>
 //	void removeComponent() {

@@ -1,9 +1,25 @@
 #pragma once
 
+#include <memory>
 #include "Animation.h"
+#include "queue"
 #include "Vec2.h"
 
 #include "SFML/Graphics.hpp"
+
+class Entity;
+
+enum StateType {
+    IDLE,
+    RUNNING,
+    JUMPING,
+    ATTACKING,
+    HIT,
+};
+enum Direction {
+    LEFT = -1,
+    RIGHT = 1
+};
 
 class Component {
 public:
@@ -36,6 +52,7 @@ public:
     Vec2 prevPos = {0.0, 0.0};  // position of the entity on the previous frame
     Vec2 scale = {1.0, 1.0};
     Vec2 velocity = {0.0, 0.0};
+    Direction direction = Direction::RIGHT;
     float angle = 0;
 
     CTransform() {}
@@ -49,12 +66,11 @@ public:
 class CText : public Component {
 public:
     sf::Text text;
-
-    CText() {}
-
+    CText() {
+        text = sf::Text();
+    }
     CText(sf::Text text)
-            : text(text) {
-        this->has = true;
+        : text(text) {
     }
 };
 
@@ -76,6 +92,7 @@ public:
     bool attack = false;
     bool canAttack = true;
     bool canJump = true;
+    bool isGrounded = false;
 
     CInput() {
         this->has = true;
@@ -103,6 +120,10 @@ public:
     int remaining = 0;  // amount of lifespan remaining on the entity
     CHealth() {
     }
+    CHealth(int total)
+        : total(total)
+        , remaining(total)
+    {}
     CHealth(int total, int remaining)
             : total(total)
             , remaining(remaining) {
@@ -120,8 +141,8 @@ public:
     Vec2 size {0.0f, 0.0f};
     Vec2 halfSize {0.0f, 0.0f};
     Vec2 offset {0.0f, 0.0f};
-    bool blockMovement = false;
-    bool blockVision = false;
+    bool blockMovement;
+    bool blockVision;
 
     CBoundingBox() {}
     CBoundingBox(const Vec2 &s, bool bm, bool bv)
@@ -181,24 +202,14 @@ public:
     }
 };
 
-enum PlayerState {
-    IDLE,
-    RUNNING,
-    JUMPING,
-    ATTACKING,
-    HIT
-};
 
 // CState will determine the state and animation of the entity
 class CState : public Component {
 public:
-    std::string state = "STANDING";
+    StateType state = StateType::IDLE;
 
-    CState() {
-        this->has = true;
-    }
-
-    CState(const std::string &s) : state(s) {
+    CState() { }
+    CState(StateType s) : state(s) {
         this->has = true;
     }
 };
@@ -271,3 +282,90 @@ public:
         }
     }
 };
+
+class CDialogue : public Component {
+public:
+    std::queue<std::string> dialogues;
+    std::string npcName;
+    size_t currentCharIdx = 1;
+    bool active = false;
+    CDialogue() {
+        dialogues.push("hello world");
+        dialogues.push("good bye");
+        npcName = "Shopkeeper";
+    }
+};
+
+struct Collision {
+    enum CollisionType {
+        TOP,
+        BOTTOM,
+        LEFT,
+        RIGHT,
+        NONE
+    };
+    std::shared_ptr<Entity> collider;
+    Vec2 collisionOverlap;
+    Vec2 previousCollisionOverlap;
+    CollisionType type;
+};
+
+class CFrameCollision : public Component {
+public:
+    Collision collision;
+    CFrameCollision() {}
+    CFrameCollision(std::shared_ptr<Entity> collider, const Vec2& overlap, const Vec2& previousOverlap) {
+        collision = Collision {collider, overlap, previousOverlap};
+    }
+//    void addCollision(std::shared_ptr<Entity> collider, const Vec2& overlap, const Vec2& previousOverlap) {
+//        collisions.push_back(Collision {collider, overlap, previousOverlap});
+//    }
+};
+
+class CMovable : public Component {
+public:
+    CMovable() {}
+};
+
+class CHitbox : public Component {
+
+public:
+    Vec2 size;
+    Vec2 offset;
+    bool active;
+
+    CHitbox() { }
+    CHitbox(const Vec2& size, const Vec2& offset, bool active = false)
+        : size(size)
+        , offset(offset)
+        , active(active) { }
+};
+
+
+class CRect : public Component {
+public:
+    sf::RectangleShape rect;
+    CRect() {}
+    CRect(Vec2 size) {
+        rect.setSize(sf::Vector2f(size.x, size.y));
+        rect.setOrigin(size.x / 2, size.y / 2);
+    }
+};
+
+class CCollide : public Component {
+public:
+    std::vector<Collision> collisions;
+    CCollide() {}
+    CCollide(std::shared_ptr<Entity> collider, const Vec2& overlap, const Vec2& previousOverlap) {
+        addCollision(collider, overlap, previousOverlap);
+    }
+    void addCollision(std::shared_ptr<Entity> collider, const Vec2& overlap, const Vec2& previousOverlap) {
+        collisions.push_back(Collision{collider, overlap, previousOverlap});
+    }
+};
+
+//struct Collision {
+//    std::shared_ptr<Entity> collider;
+//    Vec2 collisionOverlap;
+//    Vec2 previousCollisionOverlap;
+//};

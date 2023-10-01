@@ -13,21 +13,36 @@
 #include "GameEngine.h"
 #include "Physics.h"
 #include "Camera.h"
-#include "PlayerCamera.h"
+#include "TargetCamera.h"
 
 //enum Camera {
 //    Follow,
 //    Room
 //};
 
+class LevelLoader;
+class ImageLevelLoader;
+class TilesetLevelLoader;
+class WorldObjectsLevelLoader;
 
 
 class ScenePlay : public Scene {
-    struct PlayerConfig {int X, Y, BX, BY, S, ML; float MAXSPEED{10}, gravityMultiplier{1};};
+    struct PlayerConfig {int X, Y, BX, BY, S, ML; float MAXSPEED{12}, gravityMultiplier{1};};
     struct LevelConfig {int TILE_WIDTH{64}, TILE_HALF_WIDTH{32};};
 
+    friend class LevelLoader;
+    friend class ImageLevelLoader;
+    friend class TilesetLevelLoader;
+    friend class WorldObjectsLevelLoader;
+
 private:
+//    LevelLoader*            m_loader = nullptr;
+//    LevelLoader*            m_loaderTile = nullptr;
+    std::map<std::string, LevelLoader *> m_levelLoaderMap;
+
     sf::View                m_view;
+    float                   m_targetViewDiff = 12.f;
+    float                   m_initialTargetViewDiff = 12.f;
     Camera*                  m_camera = nullptr;
 //    Camera                  m_camera = Camera::Room;
     std::shared_ptr<Entity> m_player = nullptr;
@@ -47,14 +62,17 @@ private:
     void spawnSword();
     void sMovement();
     void sCollision();
+    void sResolveTileCollision();
     void sAnimation();
     void sLifespan();
     void sAttack();
+    void sIFrames();
     void sHealth();
     void sCamera();
     void sAI();
     void sParallax();
     void sGravity();
+    void sDialogue();
     void onEnd() override;
     // HELPER FUNCTIONS
     void resetPlayerInput();
@@ -62,6 +80,8 @@ private:
     void drawBoundingBox(std::shared_ptr<Entity> e);
     void drawHealthBar(std::shared_ptr<Entity> e);
     void drawGrid();
+    void drawTextEnvironementInformation(std::string text);
+    void setEntityState(std::shared_ptr<Entity> e, StateType state);
     /*
      * Function takes in room coordinates and tile coordinates, and
      * returns the Vec2 game world position of the center of the entity

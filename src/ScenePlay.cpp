@@ -12,6 +12,10 @@
 #include "Scene.h"
 #include "GameEngine.h"
 #include "Physics.h"
+#include "LevelLoader.h"
+#include "ImageLevelLoader.h"
+#include "TilesetLevelLoader.h"
+#include "WorldObjectsLevelLoader.h"
 #include <nlohmann/json.hpp>
 using json = nlohmann::json;
 
@@ -24,6 +28,7 @@ ScenePlay::ScenePlay(GameEngine *gameEngine, Assets &assetManager, const std::st
 }
 
 void ScenePlay::init(const std::string &levelPath) {
+    // register key actions
     registerAction(sf::Keyboard::Key::W, "JUMP");
     registerAction(sf::Keyboard::Key::A, "LEFT");
     registerAction(sf::Keyboard::Key::D, "RIGHT");
@@ -33,7 +38,13 @@ void ScenePlay::init(const std::string &levelPath) {
     registerAction(sf::Keyboard::Key::V, "TOGGLE_DRAW_COLLISIONS");
     registerAction(sf::Keyboard::Key::T, "TOGGLE_DRAW_TEXTURES");
     registerAction(sf::Keyboard::Key::Y, "TOGGLE_DRAW_GRID");
+
+    // register strategies for loading level
+    m_levelLoaderMap["imagelayer"] = new ImageLevelLoader();
+    m_levelLoaderMap["tilelayer"] = new TilesetLevelLoader();
+    m_levelLoaderMap["objectgroup"] = new WorldObjectsLevelLoader();
     loadLevel(levelPath);
+
 }
 
 void ScenePlay::onEnd() {
@@ -88,6 +99,7 @@ void ScenePlay::sDoAction(const Action &action) {
         else if (action.name() == "DOWN") m_player->getComponent<CInput>().down = false;
         else if (action.name() == "LEFT") m_player->getComponent<CInput>().left = false;
         else if (action.name() == "RIGHT") m_player->getComponent<CInput>().right = false;
+        else if (action.name() == "ATTACK") m_player->getComponent<CInput>().attack = false;
     }
 
 }
@@ -95,6 +107,8 @@ void ScenePlay::sDoAction(const Action &action) {
 void ScenePlay::sRender() {
     if (!m_paused) { m_game->clearWindow(sf::Color(252, 216, 168)); }
     else { m_game->clearWindow(sf::Color(240, 198, 156)); }
+
+    m_game->window().setView(m_view);
 
     // DRAW ENTITIES WITH ANIMATION COMPONENTS
     for (auto &e: m_entityManager.getEntities()) {
@@ -127,41 +141,7 @@ void ScenePlay::sRender() {
             auto& p2 = m_player->getComponent<CTransform>().pos;
             drawLine(p1, p2);
         }
-
     }
-    // DEBUG: DRAW GRID
-    if(m_drawGrid) {
-        drawGrid();
-    }
-    // TEST =======================================================
-//    for (auto &e: m_entityManager.getEntities()) {
-//        if(e->tag() == "p") {
-//            auto size = e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().getSize();
-//            std::cout << e->getComponent<CAnimation>().animation.getSprite().getGlobalBounds().getSize().y << std::endl;
-//            sf::RectangleShape b(sf::Vector2f (size.x, size.y));
-//            b.setPosition(149.333f / 2, 149.333f / 2);
-//            b.setOutlineColor(sf::Color::Red);
-//            b.setOutlineThickness(2);
-//            b.setFillColor(sf::Color::Transparent);
-//            m_game->draw(b);
-//        }
-//    }
-//    std::cout << tile1->getComponent<CAnimation>().animation.getSprite().getOrigin().x << std::endl;
-//
-//    auto tile2 = m_entityManager.addEntity("testtile");
-//    tile2->addComponent<CTransform>(Vec2{0 + 32, 0 + 32}, Vec2{0, 0}, 0);
-//    tile2->addComponent<CAnimation>(m_assetManager.getAnimation("1"));
-//    m_game->draw(tile2->getComponent<CAnimation>().animation.getSprite());
-//
-//    sf::RectangleShape r1(sf::Vector2f(64.f, 64.f));
-//    r1.setFillColor(sf::Color(10, 10, 10));
-//    r1.setPosition(0, 0);
-//    m_game->window().draw(r1);
-
-    // ~TEST =======================================================
-
-
-
 }
 
 void ScenePlay::update() {
@@ -174,9 +154,11 @@ void ScenePlay::update() {
     sLifespan();
     sGravity();
     sCollision();
-    sCamera();
+    sIFrames();
     sAnimation();
+    sCamera();
     sRender();
+    sDialogue();
     m_currentFrame++;
 }
 
@@ -186,240 +168,82 @@ Vec2 ScenePlay::gridToWorld(const Vec2 &coords) {
 }
 
 void ScenePlay::loadLevel(const std::string &levelPath) {
-    std::ifstream fin2("../bin/config/home.json");
-    if (!fin2) {
+    std::ifstream fin("../bin/config/home.json");
+    if (!fin) {
         std::cerr << "Cannot load level" << std::endl;
         exit(-1);
     }
 
-    json level = json::parse(fin2);
+    json level = json::parse(fin);
     json layers = level["layers"];
 
     for (auto& layer : layers) {
-        if(layer["type"] == "imagelayer") {
-            std::string textureName = layer["name"];
-            if(!m_assetManager.hasTexture(textureName)) { continue; }
-
-            bool repeatx = layer["repeatx"];
-            float parallaxX = 0;
-            float parallaxY = 0;
-            if(layer.contains("parallaxx")) {
-                parallaxX = layer["parallaxx"];
-            }
-            if(layer.contains("parallaxy")) {
-                parallaxY = layer["parallaxy"];
-            }
-            Vec2 windowSize = m_game->getWindowSize();
-
-            // set texture x repeating
-            sf::Texture tex = m_assetManager.getTexture(textureName);
-            Vec2 textureSize{(float) tex.getSize().x, (float) tex.getSize().y};
-            Vec2 textureToWindowRatio{windowSize.x / textureSize.x, windowSize.y / textureSize.y};
-            tex.setRepeated(repeatx);
-
-            sf::Sprite sprite(m_assetManager.getTexture(textureName), sf::IntRect(0, 0, 1280 * 10, 768));
-            sprite.scale(textureToWindowRatio.x, textureToWindowRatio.y);
-
-            auto image =  m_entityManager.addEntity("image");
-            image->addComponent<CSprite>(sprite);
-            image->addComponent<CParallax>(parallaxX,parallaxY);
-        }
-        else if(layer["type"] == "tilelayer") {
-            std::string textureName = layer["name"];
-            std::vector<int> tilemap = layer["data"];
-            int height = layer["height"];
-            int width = layer["width"];
-
-            int row = 0;
-            int col = 0;
-
-            // loop through each tile
-            for (size_t tile=0; tile<height*width; tile++) {
-                if(textureName == "terrain") {
-//                    if(tilemap[tile] == 0) { continue; }
-                    if(tile % 30 == 0 && tile != 0) {
-                        row++;
-                        col = 0;
-                    }
-                    if(tilemap[tile] != 0) {
-                        auto e = m_entityManager.addEntity("terrain");
-                        e->addComponent<CTransform>(Vec2(col*64 + 32,row*64 + 32), Vec2(0,0), 0);
-                        e->addComponent<CBoundingBox>(Vec2(64, 64), true, true);
-                        auto& eAnimation = e->addComponent<CAnimation>(m_assetManager.getAnimation(std::to_string(tilemap[tile]-1)));
-                    }
-                    col++;
-                }
-            }
-        }
-        else if(layer["type"] == "objectgroup") {
-            if(layer["name"] == "playerspawn") {
-                json object = layer["objects"][0];
-                int spawnX = ((int) object["x"])*2.667;
-                int spawnY = ((int)object["y"])*2.667;
-
-                m_playerConfig.S = 7;
-                m_playerConfig.ML = 5;
-                m_playerConfig.BX = 64;
-                m_playerConfig.BY = 64;
-
-                m_playerConfig.X = spawnX;
-                m_playerConfig.Y = spawnY;
-            }
-            if(layer["name"] == "shop") {
-                json object = layer["objects"][0];
-                auto& animation = m_assetManager.getAnimation("Shop");
-                auto animationSize = animation.getSprite().getLocalBounds().getSize();
-                auto spriteScale = animation.getSprite().getScale();
-
-                int x = (float) object["x"] * 2.667;
-                int y = (float) object["y"] * 2.667 - ((animationSize.y * spriteScale.y) / 2);
-                auto e = m_entityManager.addEntity("shop");
-                e->addComponent<CTransform>(Vec2{(float) x, (float) y}, Vec2{0, 0}, 0);
-                e->addComponent<CAnimation>(animation);
-                e->addComponent<CBoundingBox>(Vec2{animationSize.x * spriteScale.x , animationSize.y * spriteScale.y}, false, false);
-            }
-            if(layer["name"] == "enemyspawn") {
-                json objects = layer["objects"];
-                for(auto object : objects) {
-                    auto& animation = m_assetManager.getAnimation("SlimeRun");
-                    auto animationSize = animation.getSprite().getLocalBounds().getSize();
-                    auto spriteScale = animation.getSprite().getScale();
-
-                    int x = (float) object["x"] * 2.667;
-                    int y = (float) object["y"] * 2.667 - ((animationSize.y * spriteScale.y) / 2);
-                    auto e = m_entityManager.addEntity("enemy");
-                    e->addComponent<CTransform>(Vec2{(float) x, (float) y}, Vec2{2, 0}, 0);
-                    e->addComponent<CAnimation>(animation);
-                    e->addComponent<CBoundingBox>(Vec2{animationSize.x, animationSize.y}, false, false);
-//                    e->addComponent<CGravity>(0.6);
-
-                }
-            }
-            if(layer["name"] == "enemyboundary") {
-                json objects = layer["objects"];
-                for(auto object : objects) {
-                    int x = (float) object["x"] * 2.667;
-                    int y = (float) object["y"] * 2.667;
-                    auto e = m_entityManager.addEntity("enemyboundary");
-                    e->addComponent<CTransform>(Vec2{(float) x + 32, (float) y + 32}, Vec2{0, 0}, 0);
-                    e->addComponent<CBoundingBox>(Vec2{(float) m_levelConfig.TILE_WIDTH, (float) m_levelConfig.TILE_WIDTH}, false, false);
-                }
-            }
-        }
+        m_levelLoaderMap[layer["type"]]->loader(this, layer);
     }
 
-//    std::ifstream fin(levelPath);
-//    if (!fin) {
-//        std::cerr << "Could open level path: " << levelPath << std::endl;
-//        exit(-1);
-//    }
-//
-//    std::string type, aniName;
-//    int rx, ry, x, y, bx, by, maxLife, speed, damage;
-//    bool blocksVision, blocksMovement;
-//
-//    while (fin >> type) {
-//        // skip comment line
-//        if (type == "#") getline(fin, type, '\n');
-//        std::transform(type.begin(), type.end(), type.begin(), ::toupper);
-//
-//        if (type == "TILE") {
-//            fin >> aniName >> rx >> ry >> x >> y >> blocksMovement >> blocksVision;
-//            auto tile = m_entityManager.addEntity("TILE");
-//            // convert screen position to world coordinates
-//            auto &tileAnimation = tile->addComponent<CAnimation>(
-//                    m_assetManager.getAnimation(aniName)).animation;
-//            tile->addComponent<CTransform>(getPosition(Vec2(rx, ry), Vec2(x, y)), Vec2(0, 0), 0);
-//            tile->addComponent<CBoundingBox>(Vec2(64, 64), blocksMovement, blocksVision);
-//        }
-//        else if (type == "PLAYER") {
-////            fin >> m_playerConfig.X >> m_playerConfig.Y >> m_playerConfig.BX >> m_playerConfig.BY >> m_playerConfig.S
-////                >> m_playerConfig.ML;
-//            fin >> x >> y >> bx >> by >> speed >> maxLife;
-//        }
-//        else if (type == "NPC") {
-//            int numberOfPatrolPositions;
-//            std::string AIBehavior;
-//            fin >> aniName >> rx >> ry >> x >> y >> blocksMovement >> blocksVision >> maxLife >> damage >> AIBehavior >> speed;
-//
-//            auto enemy = m_entityManager.addEntity("ENEMY");
-//            Vec2 worldPos =  getPosition(Vec2(rx, ry), Vec2(x, y));
-//            enemy->addComponent<CTransform>(worldPos, Vec2(0, 0), 0);
-//            enemy->addComponent<CAnimation>(m_assetManager.getAnimation(aniName)).animation.getSprite();
-//            enemy->addComponent<CBoundingBox>(Vec2(64, 64), blocksMovement, blocksVision);
-//            enemy->addComponent<CDamage>(damage);
-//            enemy->addComponent<CHealth>(maxLife, maxLife);
-//
-//            if (AIBehavior == "Patrol") {
-//                std::vector<Vec2> positions;
-//                int n;
-//                float patrolX, patrolY;
-//                fin >> n;
-//                while (n > 0) {
-//                    fin >> patrolX >> patrolY;
-//                    positions.push_back(getPosition(Vec2(rx, ry), Vec2(patrolX, patrolY)));
-//                    n--;
-//                }
-//                enemy->addComponent<CPatrol>(positions, speed);
-//            }
-//            else {
-//                enemy->addComponent<CFollowPlayer>(worldPos, speed);
-//            }
-//        }
-//    }
-//    // spawn player on level
+    // spawn player on level
     spawnPlayer();
 }
 
 void ScenePlay::sMovement() {
     // PLAYER MOVEMENT
     // initialize y with current player's y velocity for gravity
-    Vec2 velocity = {0.0f, m_player->getComponent<CTransform>().velocity.y};
+    Vec2 velocity = {m_player->getComponent<CTransform>().velocity.x, m_player->getComponent<CTransform>().velocity.y};
+    auto& transform = m_player->getComponent<CTransform>();
     auto &input = m_player->getComponent<CInput>();
     auto &state = m_player->getComponent<CState>().state;
 
+    state = StateType::IDLE;
+
     if (input.up && input.canJump) {
-        state = "JUMPING";
+        setEntityState(m_player, StateType::JUMPING);
         input.canJump = false;
         velocity.y = 10 * -1;
     }
+    // player releases jump key before reaching apex
+//    if (!input.canJump && velocity.y >= 0) {
+//        m_playerConfig.gravityMultiplier *= 1.5;
+//    }
     if (input.down) {
-//        state = "RUNNING_DOWN";
         velocity.y = m_playerConfig.S;
     }
+    if(!input.left && !input.right) {
+        velocity.x = 0;
+    }
     if (input.left) {
-        state = "RUNNING_LEFT";
-        velocity.x = m_playerConfig.S * -1;
+        setEntityState(m_player, StateType::RUNNING);
+        transform.direction = Direction::LEFT;
+        velocity.x += 0.8 *  -1;
+        if(velocity.x < -8.4) {
+            velocity.x = -8.4;
+        }
+//        if(!input.canJump) {
+//            velocity.x += 0.4 *  -1;
+//
+//            if(velocity.x > -8.4) {
+//                velocity.x = -8.4;
+//            }
+//            else {
+//            }
+//        }
+//        else {
+//            velocity.x += std::max(1 * 1.4 * -1, -8.4);
+//            std::cout << velocity.x << std::endl;
+//        }
     }
     if (input.right) {
-        state = "RUNNING_RIGHT";
-        if(!input.canJump) {
-            velocity.x = m_playerConfig.S;
-        }
-        else {
-            velocity.x = m_playerConfig.S;
-        }
+        setEntityState(m_player, StateType::RUNNING);
+        transform.direction = Direction::RIGHT;
+        velocity.x = m_playerConfig.S;
     }
     if (input.attack) {
-        state = "ATTACKING";
+        setEntityState(m_player, StateType::ATTACKING);
     }
     if (!input.up && !input.canJump && velocity.y == 0) {  // player released jump key
         m_player->getComponent<CInput>().canJump = true;
     }
     if (!input.canJump && velocity.y >= -1 && velocity.y <= 1) {  // player released jump key
         m_playerConfig.gravityMultiplier = 0.7;
-    }
-    if (!input.up && state == "RUNNING_UP") {
-        state = "STANDING_UP";
-    }
-    if (!input.down && state == "RUNNING_DOWN") {
-        state = "STANDING_DOWN";
-    }
-    if (!input.left && state == "RUNNING_LEFT") {
-        state = "STANDING";
-    }
-    if (!input.right && state == "RUNNING_RIGHT") {
-        state = "STANDING";
     }
 
 //    Vec2 &playerPos = m_player->getComponent<CTransform>().pos;
@@ -428,11 +252,6 @@ void ScenePlay::sMovement() {
 
     // SET PREVIOUS POSITION
     m_player->getComponent<CTransform>().prevPos = m_player->getComponent<CTransform>().pos;
-
-    // UPDATE ENEMY VELOCITY
-//    for (auto& enemy : m_entityManager.getEntities("enemy")) {
-//        enemy->getComponent<CTransform>().velocity.x = ;
-//    }
 
     // update position
     for (auto &e: m_entityManager.getEntities()) {
@@ -446,25 +265,79 @@ void ScenePlay::sMovement() {
 }
 
 void ScenePlay::spawnPlayer() {
-    auto e = m_entityManager.addEntity("Blue");
+    auto e = m_entityManager.addEntity("player");
     e->addComponent<CTransform>(Vec2(m_playerConfig.X, m_playerConfig.Y), Vec2(0, 0), 0);
     auto& animation = e->addComponent<CAnimation>(m_assetManager.getAnimation("Blue"));
     Vec2 animationSize{animation.animation.getSprite().getGlobalBounds().getSize().x, animation.animation.getSprite().getGlobalBounds().getSize().y};
 
     e->addComponent<CBoundingBox>(Vec2{42.f, 86.f}, Vec2{0, 33}, false, false);
     e->addComponent<CHealth>(m_playerConfig.ML, m_playerConfig.ML);
-    e->addComponent<CInvincibility>(30);
     e->addComponent<CInput>();
     e->addComponent<CState>();
     e->addComponent<CGravity>(0.6);
+    e->addComponent<CMovable>();
+    e->addComponent<CHitbox>(Vec2{64.f, 86.f}, Vec2{64, 33}, false);
     m_player = e;
 }
 
 void ScenePlay::sCamera() {
-    Vec2 windowSize = m_game->getWindowSize();
-    m_camera = new PlayerCamera(m_player, sf::FloatRect(0.f, 0.f, (float) windowSize.x, (float) windowSize.y));
-    m_camera->update(m_game->window());
-    m_camera->render(m_game->window());
+//    Vec2 windowSize = m_game->getWindowSize();
+//    m_camera = new TargetCamera(m_player, sf::FloatRect(0.f, 0.f, (float) windowSize.x, (float) windowSize.y));
+//    m_camera->update(m_game->window());
+//    m_camera->render(m_game->window());
+
+    m_view = sf::View(sf::FloatRect(0.f, 0.f, (float) m_game->window().getSize().x, (float) m_game->window().getSize().y));
+
+    Vec2 &targetPos = m_player->getComponent<CTransform>().pos;
+    Vec2 &targetVelocity = m_player->getComponent<CTransform>().velocity;
+    Vec2 &targetBBox = m_player->getComponent<CBoundingBox>().size;
+    auto windowSize = m_game->window().getSize();
+
+    if(targetPos.x - targetBBox.x >= m_view.getCenter().x)  {
+        m_view.move(sf::Vector2f(targetPos.x - targetBBox.x - ((float) windowSize.x / 2), 0));
+        m_targetViewDiff = m_initialTargetViewDiff;
+    }
+// SOMEWHAT WORKING ============================================================================
+//    if(targetVelocity.x != 0 && targetPos.x - targetBBox.x >= m_view.getCenter().x)  {
+//        m_view.move(sf::Vector2f(targetPos.x - targetBBox.x - ((float) windowSize.x / 2), 0));
+//        m_targetViewDiff = m_initialTargetViewDiff;
+////        if(targetVelocity.x != 0) {
+////            m_view.move(-targetBBox.x, 0);
+////        }
+//    }
+//    if(targetVelocity.x == 0 && targetPos.x >= m_view.getCenter().x && targetPos.x != m_view.getCenter().x) {
+//        m_view.move(sf::Vector2f(targetPos.x - ((float) windowSize.x / 2), 0));
+//        std::cout << m_targetViewDiff << std::endl;
+//        if(m_targetViewDiff > 0) {
+//            m_view.move(sf::Vector2f(m_initialTargetViewDiff - m_targetViewDiff, 0));
+//            m_targetViewDiff -= 1;
+//        }
+//    }
+// SOMEWHAT WORKING ============================================================================
+
+//    if(targetPos.x - targetBBox.x >= m_view.getCenter().x)  {
+//        m_view.move(sf::Vector2f(targetPos.x - targetBBox.x- ((float) windowSize.x / 2), 0));
+//
+//        if(m_player->getComponent<CTransform>().velocity.x == 0 && targetPos.x >= m_view.getCenter().x)  { int diff = std::abs(targetPos.x - m_view.getCenter().x);
+//            std::cout << diff << std::endl;
+//            if (m_targetViewDiff >= -0.1 && m_targetViewDiff <= 0.1 ) {// if zero
+//                m_targetViewDiff = m_initialTargetViewDiff;
+//            }
+//            else {
+//                // pan camera to catch up to player
+//                m_view.move((m_initialTargetViewDiff - m_targetViewDiff), 0);
+//                m_targetViewDiff -= 4;
+//            }
+//        }
+//        else if (m_player->getComponent<CTransform>().velocity.x != 0) {
+//            m_view.move(-targetBBox.x, 0);
+//        }
+//    }
+
+
+
+
+
 //    Vec2 windowSize = m_game->getWindowSize();
 //    m_view = sf::View(sf::FloatRect(0.f, 0.f, (float) windowSize.x, (float) windowSize.y));
 //    if (m_camera == Camera::Follow)
@@ -499,18 +372,61 @@ Vec2 ScenePlay::getPosition(const Vec2 &room, const Vec2 &tile) {
 }
 
 void ScenePlay::sCollision() {
-    // PLAYER TILE COLLISION
-    for (auto &e: m_entityManager.getEntities("enemy")) {
-        for (auto &b: m_entityManager.getEntities("enemyboundary")) {
-            auto& eBox = e->getComponent<CBoundingBox>();
-            auto& bBox = e->getComponent<CBoundingBox>();
-            Vec2 collisionOverlap = m_physics.GetOverlap(e, b);
-            if(collisionOverlap.x > 0 && collisionOverlap.y > 0) {
-                e->getComponent<CTransform>().velocity.x *= -1;
-            }
-        }
+    // loop through each entity
+    // check for collision (if e1 has a boundingbox, and e2 blocks movement)
+    // if collision add collision component with collider information
+    for (auto &e1: m_entityManager.getEntities()) {
+        if(!e1->hasComponent<CBoundingBox>()) { continue; }
+        for (auto &e2: m_entityManager.getEntities()) {
+            if(e1->tag() == e2->tag()) { continue; }
+            if(!e1->hasComponent<CBoundingBox>()) { continue; }
 
+            // HITBOX / ENTITY COLLISION
+
+
+            auto& bBoxE1 = e1->getComponent<CBoundingBox>();
+            auto& bBoxE2 = e2->getComponent<CBoundingBox>();
+            Vec2 collisionOverlap = m_physics.GetOverlap(e1, e2);
+
+            // TILE / PLAYER AND NPC COLLISION
+            // if e1 is a moveable entity and e2 blocks movement and there is a collision between the two
+            if(e1->hasComponent<CMovable>() && bBoxE2.blockMovement && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+                Vec2 collisionPrevOverlap = m_physics.GetPreviousOverlap(e1, e2);
+                e1->addComponent<CFrameCollision>(e2, collisionOverlap, collisionPrevOverlap);
+            }
+            if(e1->tag() == "enemy" && e2->tag() == "enemyboundary") {
+                auto& eBox = e1->getComponent<CBoundingBox>();
+                auto& bBox = e2->getComponent<CBoundingBox>();
+                if(collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+                    e1->getComponent<CTransform>().velocity.x *= -1;
+                }
+            }
+            if(e1->tag() == "player" && e2->tag() == "shop" && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+                e2->getComponent<CDialogue>().active = true;
+            }
+            // e1->has(CHurtBox) && e2->has(CHitBox)
+            if (e1->tag() == "player" && e2->tag() == "enemy" && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+                if(!e1->hasComponent<CInvincibility>()) {
+                    e1->getComponent<CHealth>().remaining -= e2->getComponent<CDamage>().damage;
+                    e1->addComponent<CInvincibility>(30);
+                }
+            }
+            sResolveTileCollision();
+        }
     }
+
+    // PLAYER TILE COLLISION
+//    for (auto &e: m_entityManager.getEntities("enemy")) {
+//        for (auto &b: m_entityManager.getEntities("enemyboundary")) {
+//            auto& eBox = e->getComponent<CBoundingBox>();
+//            auto& bBox = e->getComponent<CBoundingBox>();
+//            Vec2 collisionOverlap = m_physics.GetOverlap(e, b);
+//            if(collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+//                e->getComponent<CTransform>().velocity.x *= -1;
+//            }
+//        }
+//
+//    }
     for (auto &e: m_entityManager.getEntities()) {
         if (!(e->hasComponent<CBoundingBox>())) { continue;}
         if (e->tag() == "PLAYER") { continue;}
@@ -520,122 +436,141 @@ void ScenePlay::sCollision() {
 
         // TILE PLAYER BOUNDING BOX COLLISION
         Vec2 collisionOverlap = m_physics.GetOverlap(m_player, e);
-        if(e->tag() == "shop" && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
-            std::cout << "buy some items?" << std::endl;
-        }
-        if (e->tag() == "terrain" && bBox.blockMovement && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
-            Vec2 collisionPrevOverlap = m_physics.GetPreviousOverlap(m_player, e);
-            auto &playerPos = m_player->getComponent<CTransform>().pos;
-            auto &ePos = e->getComponent<CTransform>().pos;
-            // LEFT SIDE COLLISION
-            if (collisionPrevOverlap.y > 0 && playerPos.x > ePos.x) {
-                m_player->getComponent<CTransform>().pos.x += collisionOverlap.x;
+//        if(e->tag() == "shop" && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+//            e->getComponent<CDialogue>().active = true;
+//        }
+//        if (e->tag() == "terrain" && bBox.blockMovement && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+//            Vec2 collisionPrevOverlap = m_physics.GetPreviousOverlap(m_player, e);
+//            auto &playerPos = m_player->getComponent<CTransform>().pos;
+//            auto &ePos = e->getComponent<CTransform>().pos;
+//            // LEFT SIDE COLLISION
+//            if (collisionPrevOverlap.y > 0 && playerPos.x > ePos.x) {
+//                m_player->getComponent<CTransform>().pos.x += collisionOverlap.x;
+////                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//            }
+//                // RIGHT SIDE COLLISION
+//            else if (collisionPrevOverlap.y > 0 && playerPos.x < ePos.x) {
+//                m_player->getComponent<CTransform>().pos.x -= collisionOverlap.x;
+////                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//            }
+//                // TOP SIDE COLLISION
+//            else if (collisionPrevOverlap.x > 0 && playerPos.y < ePos.y) {
+//                if(!m_player->getComponent<CInput>().canJump) {
+//                    m_player->getComponent<CState>().state = StateType::IDLE;
+//                    m_player->getComponent<CInput>().canJump = true;
+//                }
+//
+//                m_player->getComponent<CTransform>().pos.y -= collisionOverlap.y;
+//                m_playerConfig.gravityMultiplier = 1;
+//            }
+//                // BOTTOM SIDE COLLISION
+//            else if (collisionPrevOverlap.x > 0 && playerPos.y > ePos.y) {
+//                m_player->getComponent<CTransform>().pos.y += collisionOverlap.y;
+//                m_player->getComponent<CTransform>().velocity.y = 0;
+////                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+//            }
+//        }
+
+        // PLAYER ENEMY COLLISION (HEALTH AND INVINCIBILITY)
+//        if (e->tag() == "enemy" && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+//            if(!m_player->hasComponent<CInvincibility>()) {
+//                m_player->getComponent<CHealth>().remaining -= e->getComponent<CDamage>().damage;
+//                m_player->addComponent<CInvincibility>(30);
+//            }
+//        }
+    }
+    // SWORD ENEMY COLLISION (HEALTH)
+//    for (auto &sword: m_entityManager.getEntities("SWORD")) {
+//        if (!(sword->hasComponent<CBoundingBox>())) { continue;};
+//        for (auto &enemy: m_entityManager.getEntities("ENEMY")) {
+//            if (!(enemy->hasComponent<CBoundingBox>())) { continue;};
+//
+//            auto& enemyBox = enemy->getComponent<CBoundingBox>();
+//            auto& swordBox = sword->getComponent<CBoundingBox>();
+//            // BOUNDING BOX
+//            Vec2 collisionOverlap = m_physics.GetOverlap(sword, enemy);
+//            if (collisionOverlap.x > 0 && collisionOverlap.y > 0) {
+//                enemy->getComponent<CHealth>().remaining -= sword->getComponent<CDamage>().damage;
+//                sword->getComponent<CDamage>().damage = 0;
+//            }
+//
+//        }
+//    }
+
+}
+void ScenePlay::sResolveTileCollision() {
+    // possible soluiton to previous solution of having a vector of collision
+    // in the collision, we check for overlap, we compute it again here
+    for (auto &entity: m_entityManager.getEntities()) {
+//        std::cout << entity->getComponent<CFrameCollision>().collisions.size() << std::endl;
+        if(entity->hasComponent<CFrameCollision>()) {
+            auto& collision = entity->getComponent<CFrameCollision>().collision;
+            auto &entityPos = entity->getComponent<CTransform>().pos;
+            auto &colliderPos = collision.collider->getComponent<CTransform>().pos;
+            Vec2& collisionOverlap = collision.collisionOverlap;
+            Vec2& previousCollisionOverlap = collision.previousCollisionOverlap;
+
+            if (previousCollisionOverlap.y > 0 && entityPos.x > colliderPos.x) {
+                entity->getComponent<CTransform>().pos.x += collisionOverlap.x;
 //                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
             }
                 // RIGHT SIDE COLLISION
-            else if (collisionPrevOverlap.y > 0 && playerPos.x < ePos.x) {
-                m_player->getComponent<CTransform>().pos.x -= collisionOverlap.x;
+            else if (previousCollisionOverlap.y > 0 && entityPos.x < colliderPos.x) {
+                entity->getComponent<CTransform>().pos.x -= collisionOverlap.x;
 //                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
             }
                 // TOP SIDE COLLISION
-            else if (collisionPrevOverlap.x > 0 && playerPos.y < ePos.y) {
-//                if(!m_player->getComponent<CInput>().canJump) {
-//                    m_player->getComponent<CState>().state = "STANDING";
-//                }
-
-//                m_player->getComponent<CState>().state = "STANDING";
-                m_player->getComponent<CTransform>().pos.y -= collisionOverlap.y;
-//                m_player->getComponent<CInput>().canJump = true;
-                m_playerConfig.gravityMultiplier = 1;
-//                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+            else if (previousCollisionOverlap.x > 0 && entityPos.y < colliderPos.y) {
+                entity->getComponent<CTransform>().pos.y -= collisionOverlap.y;
+                if(!entity->getComponent<CInput>().canJump) {
+                    entity->getComponent<CState>().state = StateType::IDLE;
+                    entity->getComponent<CInput>().canJump = true;
+                    m_playerConfig.gravityMultiplier = 1;
+                }
             }
                 // BOTTOM SIDE COLLISION
-            else if (collisionPrevOverlap.x > 0 && playerPos.y > ePos.y) {
-                m_player->getComponent<CTransform>().pos.y += collisionOverlap.y;
-                m_player->getComponent<CTransform>().velocity.y = 0;
-//                m_player->getComponent<CTransform>().velocity = Vec2(0, 0);
+            else if (previousCollisionOverlap.x > 0 && entityPos.y > colliderPos.y) {
+                entity->getComponent<CTransform>().pos.y += collisionOverlap.y;
+                entity->getComponent<CTransform>().velocity.y = 0;
             }
         }
-
-        // PLAYER ENEMY COLLISION (HEALTH AND INVINCIBILITY)
-        if (e->tag() == "ENEMY" && e->hasComponent<CDamage>() && collisionOverlap.x > 0 && collisionOverlap.y > 0) {
-            if(!m_player->hasComponent<CInvincibility>()) {
-                m_player->getComponent<CHealth>().remaining -= e->getComponent<CDamage>().damage;
-                m_player->addComponent<CInvincibility>(30);
-            }
-        }
-    }
-    // SWORD ENEMY COLLISION (HEALTH)
-    for (auto &sword: m_entityManager.getEntities("SWORD")) {
-        if (!(sword->hasComponent<CBoundingBox>())) { continue;};
-        for (auto &enemy: m_entityManager.getEntities("ENEMY")) {
-            if (!(enemy->hasComponent<CBoundingBox>())) { continue;};
-
-            auto& enemyBox = enemy->getComponent<CBoundingBox>();
-            auto& swordBox = sword->getComponent<CBoundingBox>();
-            // BOUNDING BOX
-            Vec2 collisionOverlap = m_physics.GetOverlap(sword, enemy);
-            if (collisionOverlap.x > 0 && collisionOverlap.y > 0) {
-                enemy->getComponent<CHealth>().remaining -= sword->getComponent<CDamage>().damage;
-                sword->getComponent<CDamage>().damage = 0;
-            }
-
-        }
+        entity->getComponent<CFrameCollision>().has = false;
     }
 
-    // ADVANCE IFRAMES
-    for (auto &e: m_entityManager.getEntities()) {
-        if(e->hasComponent<CInvincibility>()) {
-            auto& iFrames = e->getComponent<CInvincibility>().iFrames;
-            iFrames -= 1;
-            if (iFrames < 1) {
-                e->getComponent<CInvincibility>().has = false;
-            }
-        }
-    }
 }
+
 
 void ScenePlay::sAnimation() {
     // UPDATE PLAYER ANIMATION
     auto &state = m_player->getComponent<CState>().state;
     auto &animation = m_player->getComponent<CAnimation>().animation;
     auto &input = m_player->getComponent<CInput>();
+    auto& pTransform = m_player->getComponent<CTransform>();
+    auto& velocity = pTransform.velocity;
+    int direction{pTransform.direction};
 
-    if (state == "RUNNING_RIGHT" && animation.getName() != "BlueRun")
-        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("BlueRun"));
-    else if (state == "RUNNING_LEFT" && animation.getName() != "BlueRun") {
-        auto& animation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("BlueRun"));
-        animation.animation.getSprite().setScale(-1 * animation.animation.getSprite().getScale().x, animation.animation.getSprite().getScale().y);
+    if (state == StateType::RUNNING && animation.getName() != "BlueRun") {
+        auto& updatedAnimation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("BlueRun"));
+        auto& sprite = updatedAnimation.animation.getSprite();
+        sprite.setScale(direction * sprite.getScale().x, sprite.getScale().y);
     }
-    else if (state == "JUMPING" && animation.getName() != "BlueJump1") {
-        auto& animation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("BlueJump1"));
+    else if (state == StateType::IDLE && animation.getName() != "Blue") {
+        auto& updatedAnimation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("Blue"));
+        auto& sprite = updatedAnimation.animation.getSprite();
+        sprite.setScale( direction * sprite.getScale().x, sprite.getScale().y);
     }
-    else if (state == "STANDING" && animation.getName() == "BlueRun") {
-        sf::Vector2f scale = animation.getSprite().getScale();
-        auto& animation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("Blue"));
-        animation.animation.getSprite().setScale(scale.x, scale.y);
+    else if (state == StateType::ATTACKING && animation.getName() != "BlueAttack") {
+        auto& updatedAnimation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("BlueAttack"));
+        auto& sprite = updatedAnimation.animation.getSprite();
+        sprite.setScale( direction * sprite.getScale().x, sprite.getScale().y);
     }
-    else if (state == "ATTACKING" && animation.getName() != "BlueAttack") {
-        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("BlueAttack"));
+    else if (state == StateType::ATTACKING && animation.hasEnded()) {
+        std::cout << "ended" << std::endl;
+//        auto& updatedAnimation = m_player->addComponent<CAnimation>(m_assetManager.getAnimation("Blue"));
+//        auto& sprite = updatedAnimation.animation.getSprite();
+//        sprite.setScale( direction * sprite.getScale().x, sprite.getScale().y);
+        state = StateType::IDLE;
     }
-
-//
-//    if (state == "STANDING_DOWN")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("Stand"));
-//    else if (state == "STANDING_UP")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("StandUp"));
-//    else if (state == "STANDING_LEFT")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("StandLeft"));
-//    else if (state == "STANDING_RIGHT")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("StandRight"));
-//    else if (state == "RUNNING_UP" && animation.getName() != "RunUp")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("RunUp"));
-//    else if (state == "RUNNING_DOWN" && animation.getName() != "RunDown")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("RunDown"));
-//    else if (state == "RUNNING_LEFT" && animation.getName() != "RunLeft")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("RunLeft"));
-//    else if (state == "RUNNING_RIGHT" && animation.getName() != "RunRight")
-//        m_player->addComponent<CAnimation>(m_assetManager.getAnimation("RunRight"));
 
     // UPDATE ANIMATION TICK
     for (auto &e: m_entityManager.getEntities()) {
@@ -645,6 +580,9 @@ void ScenePlay::sAnimation() {
             if(e->hasComponent<CInvincibility>()) {
                 animation.getSprite().setColor(sf::Color(255,255,255, 100));
             }
+            else {
+                animation.getSprite().setColor(sf::Color(255,255,255, 255));
+            }
             // SIMULATE ANIMATION
             animation.update();
         }
@@ -653,31 +591,31 @@ void ScenePlay::sAnimation() {
 }
 
 void ScenePlay::spawnSword() {
-    Vec2 &playerPos = m_player->getComponent<CTransform>().pos;
-    auto sword = m_entityManager.addEntity("SWORD");
-//    sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos, Vec2(0, 0), 0);
-    sword->addComponent<CBoundingBox>(Vec2(64, 64), false, false);
-    sword->addComponent<CDamage>();
-    sword->addComponent<CLifespan>(20);
-
-    auto& pState = m_player->getComponent<CState>().state;
-    auto& pSize = m_player->getComponent<CAnimation>().animation.getSize();
-    if(pState == "STANDING_RIGHT" || pState == "RUNNING_RIGHT") {
-        sword->addComponent<CAnimation>(m_assetManager.getAnimation("SwordRight"));
-        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(64, 0), Vec2(0, 0), 0);
-    }
-    else if(pState == "STANDING_LEFT" || pState == "RUNNING_LEFT") {
-        sword->addComponent<CAnimation>(m_assetManager.getAnimation("SwordLeft"));
-        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(-64, 0), Vec2(0, 0), 0);
-    }
-    else if(pState == "STANDING_UP" || pState == "RUNNING_UP") {
-        sword->addComponent<CAnimation>(m_assetManager.getAnimation("SwordUp"));
-        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(0, -64), Vec2(0, 0), 0);
-    }
-    else if(pState == "STANDING_DOWN" || pState == "RUNNING_DOWN") {
-        sword->addComponent<CAnimation>(m_assetManager.getAnimation("Sword"));
-        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(0, 64), Vec2(0, 0), 0);
-    }
+//    Vec2 &playerPos = m_player->getComponent<CTransform>().pos;
+//    auto sword = m_entityManager.addEntity("SWORD");
+////    sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos, Vec2(0, 0), 0);
+//    sword->addComponent<CBoundingBox>(Vec2(64, 64), false, false);
+//    sword->addComponent<CDamage>();
+//    sword->addComponent<CLifespan>(20);
+//
+//    auto& pState = m_player->getComponent<CState>().state;
+//    auto& pSize = m_player->getComponent<CAnimation>().animation.getSize();
+//    if(pState == "STANDING_RIGHT" || pState == "RUNNING_RIGHT") {
+//        sword->addComponent<CAnimation>(m_assetManager.getAnimation("SwordRight"));
+//        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(64, 0), Vec2(0, 0), 0);
+//    }
+//    else if(pState == "STANDING_LEFT" || pState == "RUNNING_LEFT") {
+//        sword->addComponent<CAnimation>(m_assetManager.getAnimation("SwordLeft"));
+//        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(-64, 0), Vec2(0, 0), 0);
+//    }
+//    else if(pState == "STANDING_UP" || pState == "RUNNING_UP") {
+//        sword->addComponent<CAnimation>(m_assetManager.getAnimation("SwordUp"));
+//        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(0, -64), Vec2(0, 0), 0);
+//    }
+//    else if(pState == "STANDING_DOWN" || pState == "RUNNING_DOWN") {
+//        sword->addComponent<CAnimation>(m_assetManager.getAnimation("Sword"));
+//        sword->addComponent<CTransform>(m_player->getComponent<CTransform>().pos + Vec2(0, 64), Vec2(0, 0), 0);
+//    }
 }
 
 void ScenePlay::drawLine(const Vec2 &p1, const Vec2 &p2) {
@@ -700,25 +638,25 @@ void ScenePlay::sLifespan() {
 }
 
 void ScenePlay::sAttack() {
-    for (auto& e : m_entityManager.getEntities()) {
-        // UPDATE SWORD POSITION
-        if(e->tag() == "SWORD") {
-            auto& pState = m_player->getComponent<CState>().state;
-            auto& pPos = m_player->getComponent<CTransform>().pos;
-            if(pState == "STANDING_RIGHT" || pState == "RUNNING_RIGHT") {
-                e->getComponent<CTransform>().pos = pPos + Vec2(64, 0);
-            }
-            if(pState == "STANDING_LEFT" || pState == "RUNNING_LEFT") {
-                e->getComponent<CTransform>().pos = pPos + Vec2(-64, 0);
-            }
-            if(pState == "STANDING_UP" || pState == "RUNNING_UP") {
-                e->getComponent<CTransform>().pos = pPos + Vec2(0, -64);
-            }
-            if(pState == "STANDING_DOWN" || pState == "RUNNING_DOWN") {
-                e->getComponent<CTransform>().pos = pPos + Vec2(0, 64);
-            }
-        }
-    }
+//    for (auto& e : m_entityManager.getEntities()) {
+//        // UPDATE SWORD POSITION
+//        if(e->tag() == "SWORD") {
+//            auto& pState = m_player->getComponent<CState>().state;
+//            auto& pPos = m_player->getComponent<CTransform>().pos;
+//            if(pState == "STANDING_RIGHT" || pState == "RUNNING_RIGHT") {
+//                e->getComponent<CTransform>().pos = pPos + Vec2(64, 0);
+//            }
+//            if(pState == "STANDING_LEFT" || pState == "RUNNING_LEFT") {
+//                e->getComponent<CTransform>().pos = pPos + Vec2(-64, 0);
+//            }
+//            if(pState == "STANDING_UP" || pState == "RUNNING_UP") {
+//                e->getComponent<CTransform>().pos = pPos + Vec2(0, -64);
+//            }
+//            if(pState == "STANDING_DOWN" || pState == "RUNNING_DOWN") {
+//                e->getComponent<CTransform>().pos = pPos + Vec2(0, 64);
+//            }
+//        }
+//    }
 
 }
 
@@ -728,7 +666,7 @@ void ScenePlay::sHealth() {
         auto& health = e->getComponent<CHealth>().remaining;
         if(health < 1) {
             e->destroy();
-            if(e->tag() == "PLAYER") {
+            if(e->tag() == "player") {
                 spawnPlayer();
             }
         }
@@ -871,6 +809,17 @@ void ScenePlay::drawBoundingBox(std::shared_ptr<Entity> e) {
 
         }
     }
+    if(e->hasComponent<CHitbox>()) {
+        auto& hitbox = e->getComponent<CHitbox>();
+        float direction = e->getComponent<CTransform>().direction;
+        sf::RectangleShape box(sf::Vector2f(hitbox.size.x, hitbox.size.y));
+        box.setPosition((pos.x + (hitbox.offset.x * direction)), pos.y + hitbox.offset.y);
+        box.setOrigin(hitbox.size.x/2, hitbox.size.y/2);
+        box.setFillColor(sf::Color(230, 10, 90, 110));
+        box.setOutlineThickness(2);
+        box.setOutlineColor(sf::Color(255, 255, 255));
+        m_game->draw(box);
+    }
 }
 
 void ScenePlay::drawHealthBar(std::shared_ptr<Entity> e) {
@@ -896,11 +845,83 @@ void ScenePlay::sGravity() {
     for (auto &e: m_entityManager.getEntities()) {
         if(e->hasComponent<CGravity>()) {
             float gravity = e->getComponent<CGravity>().gravity;
+            auto& eVelocity = e->getComponent<CTransform>().velocity;
+            bool eCanJump = e->getComponent<CInput>().canJump;
+            // increasing gravity when player is falling from the apex of their jump
+            if(eVelocity.y > 5 && !eCanJump) {
+                m_playerConfig.gravityMultiplier = 1.5f;
+            }
+            // increase hang time
+            if(eVelocity.y > -3 && eVelocity.y < 3 && !eCanJump) {
+                m_playerConfig.gravityMultiplier = 0.7f;
+            }
             float newGravity = e->getComponent<CTransform>().velocity.y + (gravity * m_playerConfig.gravityMultiplier);
             e->getComponent<CTransform>().velocity.y = std::min(newGravity, m_playerConfig.MAXSPEED);
         }
         e->getComponent<CTransform>().pos.y += e->getComponent<CTransform>().velocity.y;
     }
+}
+
+void ScenePlay::setEntityState(std::shared_ptr<Entity> e, StateType state) {
+    e->getComponent<CState>().state = state;
+}
+
+void ScenePlay::sDialogue() {
+    for (auto &e: m_entityManager.getEntities()) {
+        auto& dialogue = e->getComponent<CDialogue>();
+        if(!e->hasComponent<CDialogue>() || !dialogue.active) { continue; }
+
+        float width{600}, height{200}, posX{(float)m_game->window().getSize().x/2}, posY{height/2}, marginX{30}, marginY{30};
+        sf::RectangleShape textBox(sf::Vector2f(width, height));
+        textBox.setPosition(posX,posY + marginY);
+        textBox.setOrigin(width/2, height/2);
+        textBox.setFillColor(sf::Color::Black);
+        sf::Text sentence(dialogue.dialogues.front().substr(0, dialogue.currentCharIdx), m_assetManager.getDefaultFont(), 18);
+        sf::Text speakerName(dialogue.npcName, m_assetManager.getDefaultFont(), 24);
+
+        if(m_currentFrame % 6 == 0) {
+            dialogue.currentCharIdx++;
+        }
+        sentence.setPosition(posX + marginX - (width / 2), posY + (marginY * 2) - (height / 2));
+        speakerName.setPosition(marginX, m_game->window().getSize().y - speakerName.getGlobalBounds().getSize().y - marginY);
+        m_game->window().draw(textBox);
+        m_game->window().draw(sentence);
+        m_game->window().draw(speakerName);
+
+        // resets the active status,collision will set it to true if the two entities still overlap
+        dialogue.active = false;
+    }
+}
+
+
+void ScenePlay::drawTextEnvironementInformation(std::string text) {
+    float posX{0}, posY, textSize{24};
+    float marginX{30}, marginY{-30};
+    sf::Color fill{sf::Color::White};
+    auto e = m_entityManager.addEntity("text");
+    e->addComponent<CLifespan>(100);
+    auto& textEntity = e->addComponent<CText>().text;
+    textEntity.setString(text);
+    textEntity.setCharacterSize(textSize);
+    textEntity.setFont(m_assetManager.getDefaultFont());
+    textEntity.setFillColor(fill);
+    posY = m_game->window().getSize().y - textEntity.getGlobalBounds().getSize().y;
+
+    textEntity.setPosition(posX + marginX, posY + marginY);
+}
+
+void ScenePlay::sIFrames() {
+    // ADVANCE IFRAMES
+    for (auto &e: m_entityManager.getEntities()) {
+        if(e->hasComponent<CInvincibility>()) {
+            auto& iFrames = e->getComponent<CInvincibility>().iFrames;
+            iFrames -= 1;
+            if (iFrames < 1) {
+                e->getComponent<CInvincibility>().has = false;
+            }
+        }
+    }
+
 }
 
 

@@ -2084,14 +2084,6 @@ build src/CMakeFiles/lightcasting.dir/FileReader.cpp.o: CXX_COMPILER__lightcasti
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
   OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
 
-build src/CMakeFiles/lightcasting.dir/EntityFactory.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/EntityFactory.cpp || cmake_object_order_depends_target_lightcasting
-  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/EntityFactory.cpp.o.d
-  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
-  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
-
 build src/CMakeFiles/lightcasting.dir/Camera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Camera.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
   DEP_FILE = src/CMakeFiles/lightcasting.dir/Camera.cpp.o.d
@@ -2100,17 +2092,49 @@ build src/CMakeFiles/lightcasting.dir/Camera.cpp.o: CXX_COMPILER__lightcasting_u
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
   OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
 
-build src/CMakeFiles/lightcasting.dir/PlayerCamera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/PlayerCamera.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/TargetCamera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/TargetCamera.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/PlayerCamera.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/TargetCamera.cpp.o.d
   FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
   OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
 
-build src/CMakeFiles/lightcasting.dir/LevelEntityParser.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/LevelEntityParser.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/LevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/LevelLoader.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/LevelEntityParser.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/LevelLoader.cpp.o.d
+  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+
+build src/CMakeFiles/lightcasting.dir/ImageLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/ImageLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/ImageLevelLoader.cpp.o.d
+  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+
+build src/CMakeFiles/lightcasting.dir/TilesetLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/TilesetLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/TilesetLevelLoader.cpp.o.d
+  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+
+build src/CMakeFiles/lightcasting.dir/WorldObjectsLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/WorldObjectsLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/WorldObjectsLevelLoader.cpp.o.d
+  FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+
+build src/CMakeFiles/lightcasting.dir/SceneBattle.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/SceneBattle.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/SceneBattle.cpp.o.d
   FLAGS = -g -std=gnu++11 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
   INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
@@ -2124,7 +2148,7 @@ build src/CMakeFiles/lightcasting.dir/LevelEntityParser.cpp.o: CXX_COMPILER__lig
 #############################################
 # Link the executable src/lightcasting
 
-build src/lightcasting: CXX_EXECUTABLE_LINKER__lightcasting_Debug src/CMakeFiles/lightcasting.dir/main.cpp.o src/CMakeFiles/lightcasting.dir/Animation.cpp.o src/CMakeFiles/lightcasting.dir/EntityManager.cpp.o src/CMakeFiles/lightcasting.dir/GameEngine.cpp.o src/CMakeFiles/lightcasting.dir/Assets.cpp.o src/CMakeFiles/lightcasting.dir/Scene.cpp.o src/CMakeFiles/lightcasting.dir/SceneMenu.cpp.o src/CMakeFiles/lightcasting.dir/Vec2.cpp.o src/CMakeFiles/lightcasting.dir/ScenePlay.cpp.o src/CMakeFiles/lightcasting.dir/Physics.cpp.o src/CMakeFiles/lightcasting.dir/ScenePlayground.cpp.o src/CMakeFiles/lightcasting.dir/SceneParallax.cpp.o src/CMakeFiles/lightcasting.dir/FileReader.cpp.o src/CMakeFiles/lightcasting.dir/EntityFactory.cpp.o src/CMakeFiles/lightcasting.dir/Camera.cpp.o src/CMakeFiles/lightcasting.dir/PlayerCamera.cpp.o src/CMakeFiles/lightcasting.dir/LevelEntityParser.cpp.o | _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-window-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib || _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib
+build src/lightcasting: CXX_EXECUTABLE_LINKER__lightcasting_Debug src/CMakeFiles/lightcasting.dir/main.cpp.o src/CMakeFiles/lightcasting.dir/Animation.cpp.o src/CMakeFiles/lightcasting.dir/EntityManager.cpp.o src/CMakeFiles/lightcasting.dir/GameEngine.cpp.o src/CMakeFiles/lightcasting.dir/Assets.cpp.o src/CMakeFiles/lightcasting.dir/Scene.cpp.o src/CMakeFiles/lightcasting.dir/SceneMenu.cpp.o src/CMakeFiles/lightcasting.dir/Vec2.cpp.o src/CMakeFiles/lightcasting.dir/ScenePlay.cpp.o src/CMakeFiles/lightcasting.dir/Physics.cpp.o src/CMakeFiles/lightcasting.dir/ScenePlayground.cpp.o src/CMakeFiles/lightcasting.dir/SceneParallax.cpp.o src/CMakeFiles/lightcasting.dir/FileReader.cpp.o src/CMakeFiles/lightcasting.dir/Camera.cpp.o src/CMakeFiles/lightcasting.dir/TargetCamera.cpp.o src/CMakeFiles/lightcasting.dir/LevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/ImageLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/TilesetLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/WorldObjectsLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/SceneBattle.cpp.o | _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-window-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib || _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = -Wl,-rpath,/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-build -Wl,-rpath,/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-build/lib  _deps/imgui-sfml-build/libImGui-SFML_d.dylib  _deps/sfml-build/lib/libsfml-graphics-d.2.6.0.dylib  _deps/sfml-build/lib/libsfml-window-d.2.6.0.dylib  _deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib  -Xlinker -framework -Xlinker OpenGL
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir

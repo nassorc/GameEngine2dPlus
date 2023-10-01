@@ -25,7 +25,7 @@ Vec2 Vec2::operator - (const Vec2& rhs)
 
 Vec2 Vec2::operator * (float value)
 {
-  return Vec2{0, 0};
+  return Vec2{x * value, y * value};
 }
 
 Vec2 Vec2::operator / (float value)
@@ -49,6 +49,8 @@ Vec2& Vec2::operator -= (const Vec2& rhs)
 
 Vec2& Vec2::operator *= (float value)
 {
+    x *= value;
+    y *= value;
   return *this;
 }
 

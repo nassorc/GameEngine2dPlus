@@ -31,7 +31,7 @@ Animation::Animation(const std::string &name, sf::Texture &tex, const Vec2 &tile
 void Animation::update() {
     if(m_speed > 0 && m_frameCount > 1) {
         // loop through each frame
-        int m_currentFrame = (m_totalFrames / m_speed) % m_frameCount;
+        m_currentFrame = (m_totalFrames / m_speed) % m_frameCount;
         const Vec2& frame = m_frames[m_currentFrame];
         m_sprite.setTextureRect(sf::IntRect(
                 frame.x * m_tileSize.x,
@@ -65,5 +65,12 @@ void Animation::setSpeed(size_t speed) {
 
 std::string &Animation::getName() {
     return m_name;
+}
+
+bool Animation::hasEnded() {
+    if(m_frameCount == (m_currentFrame + 1)) {
+        m_animationEnded = true;
+    }
+    return m_animationEnded;
 }
 

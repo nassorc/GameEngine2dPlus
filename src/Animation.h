@@ -16,9 +16,10 @@ protected:
     size_t m_currentFrame = 0;        // Curent frame of animation being played
     size_t m_totalFrames = 0;        // frame life
     Vec2 m_tileSize{1, 1};
-    Vec2 m_scale{2.142, 2.142};
+    Vec2 m_scale{1, 1};
 //    Vec2 m_size;
     std::vector<Vec2> m_frames;
+    bool m_animationEnded = false;
 
 public:
     Animation();

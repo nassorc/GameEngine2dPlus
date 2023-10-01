@@ -1,0 +1,28 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "",
+    "expandedProjectPaths": [
+    ],
+    "fileStates": {
+        "#world_day": {
+            "scaleInDock": 5.171
+        }
+    },
+    "last.imagePath": "/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/bin/assets/future project/Dungeon Ruins Tileset",
+    "map.height": 11,
+    "map.tileHeight": 16,
+    "map.tileWidth": 16,
+    "openFiles": [
+    ],
+    "project": "untitled.tiled-project",
+    "recentFiles": [
+    ],
+    "tileset.embedInMap": true,
+    "tileset.tileSize": {
+        "height": 16,
+        "width": 16
+    }
+}

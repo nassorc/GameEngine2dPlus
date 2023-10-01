@@ -4,6 +4,7 @@
 #include "SceneMenu.h"
 #include "ScenePlayground.h"
 #include "SceneParallax.h"
+#include "SceneBattle.h"
 #include "Assets.h"
 #include "SFML/Graphics.hpp"
 #include "Vec2.h"
@@ -65,7 +66,8 @@ void GameEngine::init(const std::string &path) {
     // First scene
 //    changeScene("MENU", std::make_shared<ScenePlayground>(this));
 //    changeScene("MENU", std::make_shared<SceneParallax>(this, "../bin/levelParallax.txt"));
-    changeScene("MENU", std::make_shared<SceneMenu>(this, m_assets));
+//    changeScene("MENU", std::make_shared<SceneMenu>(this, m_assets));
+    changeScene("BATTLE", std::make_shared<SceneBattle>(this, m_assets));
 }
 
 void GameEngine::update() {
