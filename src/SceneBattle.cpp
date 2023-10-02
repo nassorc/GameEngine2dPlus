@@ -3,12 +3,47 @@
 //
 
 #include "SceneBattle.h"
+#include "CoreManager.h"
+#include "Components.h"
+#include "System1.h"
+#include "./include/PlayerInputSystem.h"
 
 SceneBattle::SceneBattle(GameEngine *gameEngine, Assets &assetManager) : Scene(gameEngine, assetManager) {
     init();
 }
 
+CoreManager g_coreManager;
+
+class PhysicsSystem : public System1 {
+public:
+    PhysicsSystem() {}
+    void update() {}
+};
+
 void SceneBattle::init() {
+    g_coreManager.init();
+    // register components
+    g_coreManager.registerComponent<CTransform>();
+    g_coreManager.registerComponent<CInput>();
+    // register systems
+    g_coreManager.registerSystem<PlayerInputSystem>();
+    {
+        Signature signature;
+        signature.set(g_coreManager.getComponentType<CTransform>());
+        signature.set(g_coreManager.getComponentType<CInput>());
+        g_coreManager.setSystemSignature<PlayerInputSystem>(signature);
+
+    }
+    auto pplayer = g_coreManager.createEntity("PPlayer");
+    m_player1 = pplayer;
+    g_coreManager.addComponent(pplayer, CTransform{Vec2{55, 66}, Vec2{0, 0}, 0});
+    g_coreManager.addComponent(pplayer, CInput{});
+
+    auto eenemy = g_coreManager.createEntity("eenemy");
+    g_coreManager.addComponent(eenemy, CTransform{Vec2{550, 66}, Vec2{0, 0}, 0});
+    g_coreManager.addComponent(eenemy, CInput{});
+
+
     registerAction(sf::Keyboard::Key::W, "UP");
     registerAction(sf::Keyboard::Key::S, "DOWN");
     registerAction(sf::Keyboard::Key::A, "LEFT");
@@ -33,6 +68,7 @@ void SceneBattle::init() {
 
 void SceneBattle::update() {
     m_entityManager.update();
+    g_coreManager.updateSystems();
     sPlayerInput();
     sMovement();
     sCollision();
@@ -47,7 +83,8 @@ void SceneBattle::update() {
 void SceneBattle::sDoAction(const Action &action) {
     if (action.type() == "START") {
         if (action.name() == "UP") {
-            m_player->getComponent<CInput>().up = true;
+//            m_player->getComponent<CInput>().up = true;
+            g_coreManager.getComponent<CInput>(m_player1).up = true;
         } else if (action.name() == "DOWN") {
             m_player->getComponent<CInput>().down = true;
         } else if (action.name() == "LEFT") {

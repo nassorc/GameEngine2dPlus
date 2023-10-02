@@ -8,6 +8,7 @@
 #include "Assets.h"
 #include "SFML/Graphics.hpp"
 #include "Vec2.h"
+#include "NewArchitectureScene.h"
 
 #include <map>
 #include <string>
@@ -22,6 +23,7 @@ using json = nlohmann::json;
 
 #include <imgui.h>
 #include <imgui-SFML.h>
+
 
 // <Texture specification> ===========================
 // F: Texture N P
@@ -68,6 +70,7 @@ void GameEngine::init(const std::string &path) {
 //    changeScene("MENU", std::make_shared<SceneParallax>(this, "../bin/levelParallax.txt"));
 //    changeScene("MENU", std::make_shared<SceneMenu>(this, m_assets));
     changeScene("BATTLE", std::make_shared<SceneBattle>(this, m_assets));
+//    changeScene("ARCH", std::make_shared<NewArchitectureScene>(this, m_assets));
 }
 
 void GameEngine::update() {

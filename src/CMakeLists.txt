@@ -43,6 +43,26 @@ set(SOURCE_FILES main.cpp
         WorldObjectsLevelLoader.h
         SceneBattle.cpp
         SceneBattle.h
+        Entity1.h
+        EntityManager1.h
+        ComponentManager1.h
+        ComponentManager1.cpp
+        Entity1.cpp
+        Components1.cpp
+        Components1.h
+        System1.cpp
+        System1.h
+        SystemManager1.cpp
+        SystemManager1.h
+        CoreManager.cpp
+        CoreManager.h
+        EntityComponent.cpp
+        EntityComponent.h
+        NewArchitectureScene.cpp
+        NewArchitectureScene.h
+        include/System.h
+        systems/PlayerInputSystem.cpp
+        include/PlayerInputSystem.h
 )
 
 add_executable(lightcasting ${SOURCE_FILES})

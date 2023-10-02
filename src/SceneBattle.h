@@ -7,6 +7,7 @@
 #include "Scene.h"
 #include "Physics.h"
 #include "GameEngine.h"
+#include "Entity1.h"
 
 class SceneBattle : public Scene {
     struct PlayerConfig {
@@ -20,6 +21,7 @@ class SceneBattle : public Scene {
     };
 private:
     std::shared_ptr<Entity> m_player = nullptr;
+    std::shared_ptr<Entity1> m_player1 = nullptr;
     Physics                 m_physics;
     PlayerConfig            m_playerConfig;
     WorldConfig             m_worldConfig;
