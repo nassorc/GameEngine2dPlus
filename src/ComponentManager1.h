@@ -55,7 +55,7 @@ public:
     }
     void removeData(shared_ptr<Entity1> entity) {
         // get entity's component index
-        EntityId entityId = entity->getId();
+        EntityId entityId = entity->id();
         size_t deletedEntityIdx = m_entityToIndexMap[entityId];
         size_t lastIdx = size - 1;
         size_t lastEntityIdx = m_entityToIndexMap[lastIdx];
@@ -115,7 +115,7 @@ public:
         string typeName = typeid(T).name();
         auto arr =
                 std::static_pointer_cast<ComponentArray<T>>(m_componentMap[typeName]);
-        arr->InsertData(entity->getId(), component);
+        arr->InsertData(entity->id(), component);
     }
 
     template <class T>
@@ -129,6 +129,6 @@ public:
         // get component array
         auto arr = std::static_pointer_cast<ComponentArray<T>>(m_componentMap[typeName]);
 
-        return arr->getData(entity->getId());
+        return arr->getData(entity->id());
     }
 };

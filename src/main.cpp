@@ -16,7 +16,7 @@ public:
     PhysicsSystem1() {}
     void update() {
         for(auto e : m_entities) {
-            std::cout << e->getTag() << std::endl;
+            std::cout << e->tag() << std::endl;
         }
     }
 };

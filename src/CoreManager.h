@@ -25,10 +25,29 @@ public:
     void init() {
         m_systemManager = std::make_shared<SystemManager1>();
         m_componentManager= std::make_shared<ComponentManager1>();
-        m_entityManager = std::make_shared<EntityManager1>(m_componentManager);
+        m_entityManager = std::make_shared<EntityManager1>();
     }
     shared_ptr<Entity1> createEntity(std::string tag = "default") {
         return m_entityManager->createEntity(tag);
+    }
+
+    void update() {
+        // add the new entities to the system manager before invoking
+        // the entity manager's update function. Creating an entity
+        // through the core manager's createEntity function, puts the
+        // new entity in the m_entityManager's toAddEntity queue, and it
+        // is added to the list of entities when we call its update function,
+        // which will be on the next frame, and it will clear to queue.
+        // The system manager must receive these entities before updating
+        // the entity manager.
+        // This structure of queuing the entities and adding them at the start
+        // of the new frame instead of real time adding and removing entities
+        // prevents iterator invalidation.
+
+        for (auto& e : m_entityManager->getNewEntities()) {
+            m_systemManager->entitySignatureChange(e, e->getSignature());
+        }
+        m_entityManager->update();
     }
 
     void destroyEntity();
@@ -45,7 +64,7 @@ public:
         entitySignature.set(m_componentManager->getComponentType<T>(), true);
         e->setSignature(entitySignature);
 
-        m_systemManager->entitySignatureChange(e, entitySignature);
+//        m_systemManager->entitySignatureChange(e, entitySignature);
     }
     template<class T>
     T& getComponent(std::shared_ptr<Entity1> e) {

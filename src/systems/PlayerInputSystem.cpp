@@ -20,7 +20,7 @@ void PlayerInputSystem::update() {
         auto& transform = g_coreManager.getComponent<CTransform>(e);
         auto& input = g_coreManager.getComponent<CInput>(e);
 
-        std::cout << e->getTag() << std::endl;
+        std::cout << e->tag() << std::endl;
 
         if(input.up) {
             std::cout << "W pressed" << std::endl;

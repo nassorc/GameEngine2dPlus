@@ -68,6 +68,7 @@ void SceneBattle::init() {
 
 void SceneBattle::update() {
     m_entityManager.update();
+    g_coreManager.update();
     g_coreManager.updateSystems();
     sPlayerInput();
     sMovement();
@@ -159,9 +160,6 @@ void SceneBattle::sCollision() {
             if(!e1->hasComponent<CBoundingBox>()) { continue; }
 
             Vec2 collisionOverlap = m_physics.GetOverlap(e1, e2);
-
-            auto& e1Pos = e1->getComponent<CTransform>().pos;
-            auto& e2Pos = e2->getComponent<CTransform>().pos;
 
             if(collisionOverlap.x > 0 && collisionOverlap.y > 0) {
                 Vec2 collisionPrevOverlap = m_physics.GetPreviousOverlap(e1, e2);

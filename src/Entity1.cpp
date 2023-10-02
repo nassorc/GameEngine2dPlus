@@ -6,15 +6,15 @@
 #include "Components1.h"
 #include "EntityComponent.h"
 
-Entity1::Entity1(size_t id, string tag, std::shared_ptr<ComponentManager1> cm)
+Entity1::Entity1(size_t id, string tag)
 : m_id(id)
 , m_tag(tag)
 , m_active(true) {
 }
 
 
-size_t Entity1::getId() { return m_id; }
-string Entity1::getTag() { return m_tag; }
+size_t Entity1::id() { return m_id; }
+string Entity1::tag() { return m_tag; }
 //bool Entity1::isActive() { return m_active; }
 void Entity1::destroy() { m_active = false; }
 void Entity1::setSignature(Signature signature) {
