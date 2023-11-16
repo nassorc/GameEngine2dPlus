@@ -175,5 +175,15 @@
       "name": "Bit",
       "path": "../bin/fonts/bit.ttf"
     }
-  ]
+  ],
+  "dialogue": {
+    "npc1": {
+      "name": "npc1",
+      "dialogue": [
+        "hello wolrd",
+        "hello player",
+        "hello mars"
+      ]
+    }
+  }
 }

@@ -2,29 +2,41 @@
 // Created by Matthew Crossan on 10/1/23.
 //
 
-#include "../include/PlayerInputSystem.h"
-#include "../CoreManager.h"
-#include "../Components.h"
-#include "../Vec2.h"
+#include "PlayerInputSystem.h"
+#include "../components/Components.h"
+#include "../scenes/SceneBattle.h"
+#include "../core/World.h"
+extern World world;
+extern PlayerConfig g_playerConfig;
 
-extern CoreManager g_coreManager;
-
-PlayerInputSystem::PlayerInputSystem() {
+PlayerInputSystem::PlayerInputSystem() : System() {
 
 }
 
 void PlayerInputSystem::update() {
+    System::update();
     for(auto e : m_entities) {
-        Vec2 velocity{0, 0};
+        auto& transform = world.get<CTransform>(e);
+        auto& input = world.get<CInput>(e);
 
-        auto& transform = g_coreManager.getComponent<CTransform>(e);
-        auto& input = g_coreManager.getComponent<CInput>(e);
+        Vec2 velocity = {0, 0};
 
-        std::cout << e->tag() << std::endl;
-
-        if(input.up) {
-            std::cout << "W pressed" << std::endl;
+        if (input.up) {
+            velocity.y = -1 * g_playerConfig.speed;
+        }
+        else if(input.down) {
+            velocity.y = g_playerConfig.speed;
+        }
+        else if (input.left) {
+            velocity.x = -1 * g_playerConfig.speed;
+        }
+        else if(input.right) {
+            velocity.x = g_playerConfig.speed;
         }
 
+        transform.velocity = Vec2{std::min(velocity.x, g_playerConfig.maxSpeed), std::min(velocity.y, g_playerConfig.maxSpeed)};
+
+        // SET PREVIOUS POSITION
+        transform.prevPos = transform.pos;
     }
 }

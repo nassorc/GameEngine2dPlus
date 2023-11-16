@@ -1968,6 +1968,100 @@ build _deps/json-build/install/strip: phony _deps/json-build/CMakeFiles/install/
 
 # =============================================================================
 # Write statements declared in CMakeLists.txt:
+# /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/CMakeLists.txt
+# =============================================================================
+
+
+#############################################
+# Utility command for package
+
+build _deps/tomlplusplus-build/CMakeFiles/package.util: CUSTOM_COMMAND _deps/tomlplusplus-build/all
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cpack --config ./CPackConfig.cmake
+  DESC = Run CPack packaging tool...
+  pool = console
+  restat = 1
+
+build _deps/tomlplusplus-build/package: phony _deps/tomlplusplus-build/CMakeFiles/package.util
+
+
+#############################################
+# Utility command for package_source
+
+build _deps/tomlplusplus-build/CMakeFiles/package_source.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cpack --config ./CPackSourceConfig.cmake /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/CPackSourceConfig.cmake
+  DESC = Run CPack packaging tool for source...
+  pool = console
+  restat = 1
+
+build _deps/tomlplusplus-build/package_source: phony _deps/tomlplusplus-build/CMakeFiles/package_source.util
+
+
+#############################################
+# Utility command for edit_cache
+
+build _deps/tomlplusplus-build/CMakeFiles/edit_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+  DESC = No interactive CMake dialog available...
+  restat = 1
+
+build _deps/tomlplusplus-build/edit_cache: phony _deps/tomlplusplus-build/CMakeFiles/edit_cache.util
+
+
+#############################################
+# Utility command for rebuild_cache
+
+build _deps/tomlplusplus-build/CMakeFiles/rebuild_cache.util: CUSTOM_COMMAND
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S/Users/macrossan/Code/CPP/Projects/lightcasting -B/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug
+  DESC = Running CMake to regenerate build system...
+  pool = console
+  restat = 1
+
+build _deps/tomlplusplus-build/rebuild_cache: phony _deps/tomlplusplus-build/CMakeFiles/rebuild_cache.util
+
+
+#############################################
+# Utility command for list_install_components
+
+build _deps/tomlplusplus-build/list_install_components: phony
+
+
+#############################################
+# Utility command for install
+
+build _deps/tomlplusplus-build/CMakeFiles/install.util: CUSTOM_COMMAND _deps/tomlplusplus-build/all
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -P cmake_install.cmake
+  DESC = Install the project...
+  pool = console
+  restat = 1
+
+build _deps/tomlplusplus-build/install: phony _deps/tomlplusplus-build/CMakeFiles/install.util
+
+
+#############################################
+# Utility command for install/local
+
+build _deps/tomlplusplus-build/CMakeFiles/install/local.util: CUSTOM_COMMAND _deps/tomlplusplus-build/all
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+  DESC = Installing only the local directory...
+  pool = console
+  restat = 1
+
+build _deps/tomlplusplus-build/install/local: phony _deps/tomlplusplus-build/CMakeFiles/install/local.util
+
+
+#############################################
+# Utility command for install/strip
+
+build _deps/tomlplusplus-build/CMakeFiles/install/strip.util: CUSTOM_COMMAND _deps/tomlplusplus-build/all
+  COMMAND = cd /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build && /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+  DESC = Installing the project stripped...
+  pool = console
+  restat = 1
+
+build _deps/tomlplusplus-build/install/strip: phony _deps/tomlplusplus-build/CMakeFiles/install/strip.util
+
+# =============================================================================
+# Write statements declared in CMakeLists.txt:
 # /Users/macrossan/Code/CPP/Projects/lightcasting/CMakeLists.txt
 # =============================================================================
 
@@ -1984,233 +2078,345 @@ build src/CMakeFiles/lightcasting.dir/main.cpp.o: CXX_COMPILER__lightcasting_uns
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
   DEP_FILE = src/CMakeFiles/lightcasting.dir/main.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
   OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
 
-build src/CMakeFiles/lightcasting.dir/Animation.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Animation.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/Animation.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/Animation.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Animation.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/Animation.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
-build src/CMakeFiles/lightcasting.dir/EntityManager.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/EntityManager.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/(deprecated)/EntityManager.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/(deprecated)/EntityManager.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/EntityManager.cpp.o.d
+  DEP_FILE = "src/CMakeFiles/lightcasting.dir/(deprecated)/EntityManager.cpp.o.d"
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = "src/CMakeFiles/lightcasting.dir/(deprecated)"
 
-build src/CMakeFiles/lightcasting.dir/GameEngine.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/GameEngine.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/GameEngine.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/GameEngine.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/GameEngine.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/GameEngine.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
-build src/CMakeFiles/lightcasting.dir/Assets.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Assets.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/Assets.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/Assets.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Assets.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/Assets.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
-build src/CMakeFiles/lightcasting.dir/Scene.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Scene.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/scenes/Scene.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/scenes/Scene.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Scene.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/scenes/Scene.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/scenes
 
-build src/CMakeFiles/lightcasting.dir/SceneMenu.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/SceneMenu.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/scenes/SceneMenu.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/scenes/SceneMenu.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/SceneMenu.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/scenes/SceneMenu.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/scenes
 
-build src/CMakeFiles/lightcasting.dir/Vec2.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Vec2.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/math/Vec2.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/math/Vec2.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Vec2.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/math/Vec2.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/math
 
-build src/CMakeFiles/lightcasting.dir/ScenePlay.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/ScenePlay.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/(deprecated)/ScenePlay.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/(deprecated)/ScenePlay.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/ScenePlay.cpp.o.d
+  DEP_FILE = "src/CMakeFiles/lightcasting.dir/(deprecated)/ScenePlay.cpp.o.d"
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = "src/CMakeFiles/lightcasting.dir/(deprecated)"
 
-build src/CMakeFiles/lightcasting.dir/Physics.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Physics.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/(deprecated)/Physics.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/(deprecated)/Physics.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Physics.cpp.o.d
+  DEP_FILE = "src/CMakeFiles/lightcasting.dir/(deprecated)/Physics.cpp.o.d"
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = "src/CMakeFiles/lightcasting.dir/(deprecated)"
 
-build src/CMakeFiles/lightcasting.dir/ScenePlayground.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/ScenePlayground.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/(deprecated)/ScenePlayground.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/(deprecated)/ScenePlayground.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/ScenePlayground.cpp.o.d
+  DEP_FILE = "src/CMakeFiles/lightcasting.dir/(deprecated)/ScenePlayground.cpp.o.d"
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = "src/CMakeFiles/lightcasting.dir/(deprecated)"
 
-build src/CMakeFiles/lightcasting.dir/SceneParallax.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/SceneParallax.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/scenes/SceneParallax.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/scenes/SceneParallax.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/SceneParallax.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/scenes/SceneParallax.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/scenes
 
-build src/CMakeFiles/lightcasting.dir/FileReader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/FileReader.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/utils/levelParser/FileReader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/levelParser/FileReader.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/FileReader.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/levelParser/FileReader.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/levelParser
 
-build src/CMakeFiles/lightcasting.dir/Camera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Camera.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/(deprecated)/Camera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/(deprecated)/Camera.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Camera.cpp.o.d
+  DEP_FILE = "src/CMakeFiles/lightcasting.dir/(deprecated)/Camera.cpp.o.d"
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = "src/CMakeFiles/lightcasting.dir/(deprecated)"
 
-build src/CMakeFiles/lightcasting.dir/TargetCamera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/TargetCamera.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/(deprecated)/TargetCamera.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/(deprecated)/TargetCamera.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/TargetCamera.cpp.o.d
+  DEP_FILE = "src/CMakeFiles/lightcasting.dir/(deprecated)/TargetCamera.cpp.o.d"
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = "src/CMakeFiles/lightcasting.dir/(deprecated)"
 
-build src/CMakeFiles/lightcasting.dir/LevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/LevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/utils/levelParser/LevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/levelParser/LevelLoader.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/LevelLoader.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/levelParser/LevelLoader.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/levelParser
 
-build src/CMakeFiles/lightcasting.dir/ImageLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/ImageLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/utils/levelParser/ImageLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/levelParser/ImageLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/ImageLevelLoader.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/levelParser/ImageLevelLoader.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/levelParser
 
-build src/CMakeFiles/lightcasting.dir/TilesetLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/TilesetLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/utils/levelParser/TilesetLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/levelParser/TilesetLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/TilesetLevelLoader.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/levelParser/TilesetLevelLoader.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/levelParser
 
-build src/CMakeFiles/lightcasting.dir/WorldObjectsLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/WorldObjectsLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/utils/levelParser/WorldObjectsLevelLoader.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/levelParser/WorldObjectsLevelLoader.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/WorldObjectsLevelLoader.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/levelParser/WorldObjectsLevelLoader.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/levelParser
 
-build src/CMakeFiles/lightcasting.dir/SceneBattle.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/SceneBattle.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/scenes/SceneBattle.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/scenes/SceneBattle.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/SceneBattle.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/scenes/SceneBattle.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/scenes
 
-build src/CMakeFiles/lightcasting.dir/ComponentManager1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/ComponentManager1.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/ComponentManager1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/ComponentManager1.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/ComponentManager1.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/ComponentManager1.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
-build src/CMakeFiles/lightcasting.dir/Entity1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Entity1.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/Entity1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/Entity1.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Entity1.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/Entity1.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
-build src/CMakeFiles/lightcasting.dir/Components1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/Components1.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/SystemManager1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/SystemManager1.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/Components1.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/SystemManager1.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
-build src/CMakeFiles/lightcasting.dir/System1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/System1.cpp || cmake_object_order_depends_target_lightcasting
+build src/CMakeFiles/lightcasting.dir/core/CoreManager.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/core/CoreManager.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/System1.cpp.o.d
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/core/CoreManager.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
-
-build src/CMakeFiles/lightcasting.dir/SystemManager1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/SystemManager1.cpp || cmake_object_order_depends_target_lightcasting
-  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/SystemManager1.cpp.o.d
-  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
-  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
-
-build src/CMakeFiles/lightcasting.dir/CoreManager.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/CoreManager.cpp || cmake_object_order_depends_target_lightcasting
-  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/CoreManager.cpp.o.d
-  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
-  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
-
-build src/CMakeFiles/lightcasting.dir/EntityComponent.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/EntityComponent.cpp || cmake_object_order_depends_target_lightcasting
-  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/EntityComponent.cpp.o.d
-  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
-  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
-
-build src/CMakeFiles/lightcasting.dir/NewArchitectureScene.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/NewArchitectureScene.cpp || cmake_object_order_depends_target_lightcasting
-  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
-  DEP_FILE = src/CMakeFiles/lightcasting.dir/NewArchitectureScene.cpp.o.d
-  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
-  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
-  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/core
 
 build src/CMakeFiles/lightcasting.dir/systems/PlayerInputSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/PlayerInputSystem.cpp || cmake_object_order_depends_target_lightcasting
   DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
   DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/PlayerInputSystem.cpp.o.d
   FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
   OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/MovementSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/MovementSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/MovementSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/PhysicsSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/PhysicsSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/PhysicsSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/math/Physics1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/math/Physics1.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/math/Physics1.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/math
+
+build src/CMakeFiles/lightcasting.dir/systems/RenderSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/RenderSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/RenderSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/GravitySystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/GravitySystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/GravitySystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/CleanupSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/CleanupSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/CleanupSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/DamageSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/DamageSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/DamageSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/HitboxSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/HitboxSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/HitboxSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/LifespanSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/LifespanSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/LifespanSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/PlayerStateSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/PlayerStateSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/PlayerStateSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/utils/TiledParser1.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/TiledParser1.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/TiledParser1.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils
+
+build src/CMakeFiles/lightcasting.dir/systems/AISystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/AISystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/AISystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/systems/SpellCasterSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/SpellCasterSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/SpellCasterSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/ComponentParserRegistry.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/entityPrefabParser/ComponentParserRegistry.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/ComponentParserRegistry.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser
+
+build src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/RenderComponentParser.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/entityPrefabParser/RenderComponentParser.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/RenderComponentParser.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser
+
+build src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/EntityParser.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/entityPrefabParser/EntityParser.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/EntityParser.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser
+
+build src/CMakeFiles/lightcasting.dir/systems/DialogueSystem.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/systems/DialogueSystem.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/systems/DialogueSystem.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/systems
+
+build src/CMakeFiles/lightcasting.dir/utils/TiledParser/TiledParser.cpp.o: CXX_COMPILER__lightcasting_unscanned_Debug /Users/macrossan/Code/CPP/Projects/lightcasting/src/utils/TiledParser/TiledParser.cpp || cmake_object_order_depends_target_lightcasting
+  DEFINES = -DIMGUI_USER_CONFIG=\"imconfig-SFML.h\" -DJSON_DIAGNOSTICS=0 -DJSON_USE_IMPLICIT_CONVERSIONS=1
+  DEP_FILE = src/CMakeFiles/lightcasting.dir/utils/TiledParser/TiledParser.cpp.o.d
+  FLAGS = -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk -fcolor-diagnostics
+  INCLUDES = -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-src -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-src/include -I/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-src/single_include -isystem /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src/include
+  OBJECT_DIR = src/CMakeFiles/lightcasting.dir
+  OBJECT_FILE_DIR = src/CMakeFiles/lightcasting.dir/utils/TiledParser
 
 
 # =============================================================================
@@ -2220,7 +2426,7 @@ build src/CMakeFiles/lightcasting.dir/systems/PlayerInputSystem.cpp.o: CXX_COMPI
 #############################################
 # Link the executable src/lightcasting
 
-build src/lightcasting: CXX_EXECUTABLE_LINKER__lightcasting_Debug src/CMakeFiles/lightcasting.dir/main.cpp.o src/CMakeFiles/lightcasting.dir/Animation.cpp.o src/CMakeFiles/lightcasting.dir/EntityManager.cpp.o src/CMakeFiles/lightcasting.dir/GameEngine.cpp.o src/CMakeFiles/lightcasting.dir/Assets.cpp.o src/CMakeFiles/lightcasting.dir/Scene.cpp.o src/CMakeFiles/lightcasting.dir/SceneMenu.cpp.o src/CMakeFiles/lightcasting.dir/Vec2.cpp.o src/CMakeFiles/lightcasting.dir/ScenePlay.cpp.o src/CMakeFiles/lightcasting.dir/Physics.cpp.o src/CMakeFiles/lightcasting.dir/ScenePlayground.cpp.o src/CMakeFiles/lightcasting.dir/SceneParallax.cpp.o src/CMakeFiles/lightcasting.dir/FileReader.cpp.o src/CMakeFiles/lightcasting.dir/Camera.cpp.o src/CMakeFiles/lightcasting.dir/TargetCamera.cpp.o src/CMakeFiles/lightcasting.dir/LevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/ImageLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/TilesetLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/WorldObjectsLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/SceneBattle.cpp.o src/CMakeFiles/lightcasting.dir/ComponentManager1.cpp.o src/CMakeFiles/lightcasting.dir/Entity1.cpp.o src/CMakeFiles/lightcasting.dir/Components1.cpp.o src/CMakeFiles/lightcasting.dir/System1.cpp.o src/CMakeFiles/lightcasting.dir/SystemManager1.cpp.o src/CMakeFiles/lightcasting.dir/CoreManager.cpp.o src/CMakeFiles/lightcasting.dir/EntityComponent.cpp.o src/CMakeFiles/lightcasting.dir/NewArchitectureScene.cpp.o src/CMakeFiles/lightcasting.dir/systems/PlayerInputSystem.cpp.o | _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-window-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib || _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib
+build src/lightcasting: CXX_EXECUTABLE_LINKER__lightcasting_Debug src/CMakeFiles/lightcasting.dir/main.cpp.o src/CMakeFiles/lightcasting.dir/core/Animation.cpp.o src/CMakeFiles/lightcasting.dir/(deprecated)/EntityManager.cpp.o src/CMakeFiles/lightcasting.dir/core/GameEngine.cpp.o src/CMakeFiles/lightcasting.dir/core/Assets.cpp.o src/CMakeFiles/lightcasting.dir/scenes/Scene.cpp.o src/CMakeFiles/lightcasting.dir/scenes/SceneMenu.cpp.o src/CMakeFiles/lightcasting.dir/math/Vec2.cpp.o src/CMakeFiles/lightcasting.dir/(deprecated)/ScenePlay.cpp.o src/CMakeFiles/lightcasting.dir/(deprecated)/Physics.cpp.o src/CMakeFiles/lightcasting.dir/(deprecated)/ScenePlayground.cpp.o src/CMakeFiles/lightcasting.dir/scenes/SceneParallax.cpp.o src/CMakeFiles/lightcasting.dir/utils/levelParser/FileReader.cpp.o src/CMakeFiles/lightcasting.dir/(deprecated)/Camera.cpp.o src/CMakeFiles/lightcasting.dir/(deprecated)/TargetCamera.cpp.o src/CMakeFiles/lightcasting.dir/utils/levelParser/LevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/utils/levelParser/ImageLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/utils/levelParser/TilesetLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/utils/levelParser/WorldObjectsLevelLoader.cpp.o src/CMakeFiles/lightcasting.dir/scenes/SceneBattle.cpp.o src/CMakeFiles/lightcasting.dir/core/ComponentManager1.cpp.o src/CMakeFiles/lightcasting.dir/core/Entity1.cpp.o src/CMakeFiles/lightcasting.dir/core/SystemManager1.cpp.o src/CMakeFiles/lightcasting.dir/core/CoreManager.cpp.o src/CMakeFiles/lightcasting.dir/systems/PlayerInputSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/MovementSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/PhysicsSystem.cpp.o src/CMakeFiles/lightcasting.dir/math/Physics1.cpp.o src/CMakeFiles/lightcasting.dir/systems/RenderSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/GravitySystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/CleanupSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/DamageSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/HitboxSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/LifespanSystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/PlayerStateSystem.cpp.o src/CMakeFiles/lightcasting.dir/utils/TiledParser1.cpp.o src/CMakeFiles/lightcasting.dir/systems/AISystem.cpp.o src/CMakeFiles/lightcasting.dir/systems/SpellCasterSystem.cpp.o src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/ComponentParserRegistry.cpp.o src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/RenderComponentParser.cpp.o src/CMakeFiles/lightcasting.dir/utils/entityPrefabParser/EntityParser.cpp.o src/CMakeFiles/lightcasting.dir/systems/DialogueSystem.cpp.o src/CMakeFiles/lightcasting.dir/utils/TiledParser/TiledParser.cpp.o | _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-window-d.2.6.0.dylib _deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib || _deps/imgui-sfml-build/libImGui-SFML_d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-graphics-d.dylib _deps/sfml-build/lib/libsfml-window-d.dylib _deps/sfml-build/lib/libsfml-system-d.dylib
   FLAGS = -g -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX13.3.sdk
   LINK_LIBRARIES = -Wl,-rpath,/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/imgui-sfml-build -Wl,-rpath,/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-build/lib  _deps/imgui-sfml-build/libImGui-SFML_d.dylib  _deps/sfml-build/lib/libsfml-graphics-d.2.6.0.dylib  _deps/sfml-build/lib/libsfml-window-d.2.6.0.dylib  _deps/sfml-build/lib/libsfml-system-d.2.6.0.dylib  -Xlinker -framework -Xlinker OpenGL
   OBJECT_DIR = src/CMakeFiles/lightcasting.dir
@@ -2401,9 +2607,16 @@ build _deps/sfml-build/src/SFML/Window/all: phony _deps/sfml-build/lib/libsfml-w
 # =============================================================================
 
 #############################################
+# Folder: /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build
+
+build _deps/tomlplusplus-build/all: phony
+
+# =============================================================================
+
+#############################################
 # Folder: /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/dependencies
 
-build dependencies/all: phony dependencies/sfml/all dependencies/imgui-sfml/all _deps/json-build/all
+build dependencies/all: phony dependencies/sfml/all dependencies/imgui-sfml/all _deps/json-build/all _deps/tomlplusplus-build/all
 
 # =============================================================================
 
@@ -2433,14 +2646,14 @@ build src/all: phony src/lightcasting
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeParseArguments.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPack.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPackComponent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/ExternalProject.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent/CMakeLists.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindGit.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindOpenGL.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Templates/CPackConfig.cmake.in /Users/macrossan/Code/CPP/Projects/lightcasting/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/imgui-sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/src/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake _deps/imgui-sfml-src/CMakeLists.txt _deps/imgui-sfml-src/cmake/FindImGui.cmake _deps/json-src/CMakeLists.txt _deps/json-src/cmake/config.cmake.in _deps/json-src/cmake/nlohmann_jsonConfigVersion.cmake.in _deps/json-src/cmake/pkg-config.pc.in _deps/sfml-src/CMakeLists.txt _deps/sfml-src/cmake/CompilerOptionsOverride.cmake _deps/sfml-src/cmake/CompilerWarnings.cmake _deps/sfml-src/cmake/Config.cmake _deps/sfml-src/cmake/Macros.cmake _deps/sfml-src/cmake/Modules/FindFreetype.cmake _deps/sfml-src/cmake/SFMLConfig.cmake.in _deps/sfml-src/cmake/SFMLConfigDependencies.cmake.in _deps/sfml-src/src/SFML/CMakeLists.txt _deps/sfml-src/src/SFML/Graphics/CMakeLists.txt _deps/sfml-src/src/SFML/System/CMakeLists.txt _deps/sfml-src/src/SFML/Window/CMakeLists.txt
+build build.ninja: RERUN_CMAKE | /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeParseArguments.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPack.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPackComponent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/ExternalProject.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent/CMakeLists.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindGit.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindOpenGL.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Templates/CPackConfig.cmake.in /Users/macrossan/Code/CPP/Projects/lightcasting/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/imgui-sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/src/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake _deps/imgui-sfml-src/CMakeLists.txt _deps/imgui-sfml-src/cmake/FindImGui.cmake _deps/json-src/CMakeLists.txt _deps/json-src/cmake/config.cmake.in _deps/json-src/cmake/nlohmann_jsonConfigVersion.cmake.in _deps/json-src/cmake/pkg-config.pc.in _deps/sfml-src/CMakeLists.txt _deps/sfml-src/cmake/CompilerOptionsOverride.cmake _deps/sfml-src/cmake/CompilerWarnings.cmake _deps/sfml-src/cmake/Config.cmake _deps/sfml-src/cmake/Macros.cmake _deps/sfml-src/cmake/Modules/FindFreetype.cmake _deps/sfml-src/cmake/SFMLConfig.cmake.in _deps/sfml-src/cmake/SFMLConfigDependencies.cmake.in _deps/sfml-src/src/SFML/CMakeLists.txt _deps/sfml-src/src/SFML/Graphics/CMakeLists.txt _deps/sfml-src/src/SFML/System/CMakeLists.txt _deps/sfml-src/src/SFML/Window/CMakeLists.txt _deps/tomlplusplus-src/CMakeLists.txt _deps/tomlplusplus-src/cmake/project-is-top-level.cmake _deps/tomlplusplus-src/cmake/variables.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeParseArguments.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPack.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPackComponent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/ExternalProject.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent/CMakeLists.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindGit.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindOpenGL.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Templates/CPackConfig.cmake.in /Users/macrossan/Code/CPP/Projects/lightcasting/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/imgui-sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/src/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake _deps/imgui-sfml-src/CMakeLists.txt _deps/imgui-sfml-src/cmake/FindImGui.cmake _deps/json-src/CMakeLists.txt _deps/json-src/cmake/config.cmake.in _deps/json-src/cmake/nlohmann_jsonConfigVersion.cmake.in _deps/json-src/cmake/pkg-config.pc.in _deps/sfml-src/CMakeLists.txt _deps/sfml-src/cmake/CompilerOptionsOverride.cmake _deps/sfml-src/cmake/CompilerWarnings.cmake _deps/sfml-src/cmake/Config.cmake _deps/sfml-src/cmake/Macros.cmake _deps/sfml-src/cmake/Modules/FindFreetype.cmake _deps/sfml-src/cmake/SFMLConfig.cmake.in _deps/sfml-src/cmake/SFMLConfigDependencies.cmake.in _deps/sfml-src/src/SFML/CMakeLists.txt _deps/sfml-src/src/SFML/Graphics/CMakeLists.txt _deps/sfml-src/src/SFML/System/CMakeLists.txt _deps/sfml-src/src/SFML/Window/CMakeLists.txt: phony
+build /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCXXInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeCommonLanguageInclude.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeGenericSystem.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeInitializeConfigs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeLanguageInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakePackageConfigHelpers.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeParseArguments.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInformation.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CMakeSystemSpecificInitialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPack.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/CPackComponent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/CMakeCommonCompilerMacros.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Compiler/GNU.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/ExternalProject.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FetchContent/CMakeLists.cmake.in /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindGit.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindOpenGL.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageHandleStandardArgs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/FindPackageMessage.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/GNUInstallDirs.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-AppleClang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-C.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang-CXX.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Apple-Clang.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin-Initialize.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/Darwin.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/Platform/UnixPaths.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Modules/WriteBasicConfigVersionFile.cmake /Applications/CLion.app/Contents/bin/cmake/mac/share/cmake-3.26/Templates/CPackConfig.cmake.in /Users/macrossan/Code/CPP/Projects/lightcasting/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/imgui-sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/dependencies/sfml/CMakeLists.txt /Users/macrossan/Code/CPP/Projects/lightcasting/src/CMakeLists.txt CMakeCache.txt CMakeFiles/3.26.4/CMakeCCompiler.cmake CMakeFiles/3.26.4/CMakeCXXCompiler.cmake CMakeFiles/3.26.4/CMakeSystem.cmake _deps/imgui-sfml-src/CMakeLists.txt _deps/imgui-sfml-src/cmake/FindImGui.cmake _deps/json-src/CMakeLists.txt _deps/json-src/cmake/config.cmake.in _deps/json-src/cmake/nlohmann_jsonConfigVersion.cmake.in _deps/json-src/cmake/pkg-config.pc.in _deps/sfml-src/CMakeLists.txt _deps/sfml-src/cmake/CompilerOptionsOverride.cmake _deps/sfml-src/cmake/CompilerWarnings.cmake _deps/sfml-src/cmake/Config.cmake _deps/sfml-src/cmake/Macros.cmake _deps/sfml-src/cmake/Modules/FindFreetype.cmake _deps/sfml-src/cmake/SFMLConfig.cmake.in _deps/sfml-src/cmake/SFMLConfigDependencies.cmake.in _deps/sfml-src/src/SFML/CMakeLists.txt _deps/sfml-src/src/SFML/Graphics/CMakeLists.txt _deps/sfml-src/src/SFML/System/CMakeLists.txt _deps/sfml-src/src/SFML/Window/CMakeLists.txt _deps/tomlplusplus-src/CMakeLists.txt _deps/tomlplusplus-src/cmake/project-is-top-level.cmake _deps/tomlplusplus-src/cmake/variables.cmake: phony
 
 
 #############################################

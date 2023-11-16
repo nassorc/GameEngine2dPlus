@@ -1,5 +1,10 @@
 {
-  "shopkeeper": {
-
-
+  "npc1": {
+    "current": 0,
+    "dialgoues": [
+      "hello user",
+      "bye user",
+      "hello mars"
+    ]
+  }
 }

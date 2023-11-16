@@ -90,6 +90,14 @@
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/install.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/install/local.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/CMakeFiles/install/strip.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/package.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/package_source.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/edit_cache.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/rebuild_cache.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/list_install_components.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/install.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/install/local.dir
+/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/CMakeFiles/install/strip.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/src/CMakeFiles/lightcasting.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/src/CMakeFiles/package.dir
 /Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/src/CMakeFiles/package_source.dir

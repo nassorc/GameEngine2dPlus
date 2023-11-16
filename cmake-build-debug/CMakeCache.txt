@@ -356,6 +356,10 @@ FETCHCONTENT_SOURCE_DIR_JSON:PATH=
 // for SFML
 FETCHCONTENT_SOURCE_DIR_SFML:PATH=
 
+//When not empty, overrides where to find pre-populated content
+// for tomlplusplus
+FETCHCONTENT_SOURCE_DIR_TOMLPLUSPLUS:PATH=
+
 //Enables UPDATE_DISCONNECTED behavior for all content population
 FETCHCONTENT_UPDATES_DISCONNECTED:BOOL=OFF
 
@@ -370,6 +374,9 @@ FETCHCONTENT_UPDATES_DISCONNECTED_JSON:BOOL=OFF
 
 //Enables UPDATE_DISCONNECTED behavior just for population of sfml
 FETCHCONTENT_UPDATES_DISCONNECTED_SFML:BOOL=OFF
+
+//Enables UPDATE_DISCONNECTED behavior just for population of tomlplusplus
+FETCHCONTENT_UPDATES_DISCONNECTED_TOMLPLUSPLUS:BOOL=OFF
 
 //Path to a file.
 FREETYPE_INCLUDE_DIR_freetype2:PATH=/opt/homebrew/include/freetype2
@@ -539,6 +546,18 @@ sfml-system_LIB_DEPENDS:STATIC=general;-stdlib=libc++;general;pthread;
 //Dependencies for the target
 sfml-window_LIB_DEPENDS:STATIC=general;-stdlib=libc++;general;sfml-system;general;-framework Foundation;general;-framework AppKit;general;-framework IOKit;general;-framework Carbon;
 
+//Value Computed by CMake
+tomlplusplus_BINARY_DIR:STATIC=/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build
+
+//Use SYSTEM modifier for tomlplusplus's includes, disabling warnings
+tomlplusplus_INCLUDES_WITH_SYSTEM:BOOL=ON
+
+//Value Computed by CMake
+tomlplusplus_IS_TOP_LEVEL:STATIC=OFF
+
+//Value Computed by CMake
+tomlplusplus_SOURCE_DIR:STATIC=/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-src
+
 
 ########################
 # INTERNAL cache entries
@@ -664,7 +683,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=12
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=13
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP
@@ -762,4 +781,6 @@ OPENGL_gl_LIBRARY-ADVANCED:INTERNAL=1
 OPENGL_glu_LIBRARY-ADVANCED:INTERNAL=1
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=/usr/local
+//ADVANCED property for variable: tomlplusplus_INCLUDES_WITH_SYSTEM
+tomlplusplus_INCLUDES_WITH_SYSTEM-ADVANCED:INTERNAL=1
 

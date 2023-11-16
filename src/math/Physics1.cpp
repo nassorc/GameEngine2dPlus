@@ -1,0 +1,134 @@
+//
+// Created by Matthew Crossan on 10/3/23.
+//
+
+#include "Physics1.h"
+
+#include <cmath>
+
+#include "../core/World.h"
+extern World world;
+
+
+Physics1::Physics1() {
+
+}
+
+Vec2 Physics1::GetOverlap(std::shared_ptr<Entity1> a, std::shared_ptr<Entity1> b) {
+    Vec2 overlap;
+    auto &posA = world.get<CTransform>(a).pos;
+    auto &posB = world.get<CTransform>(b).pos;
+    auto &hSizeA = world.get<CBoundingBox>(a).halfSize;
+    auto &hSizeB = world.get<CBoundingBox>(b).halfSize;
+    auto &offsetA = world.get<CBoundingBox>(a).offset;
+    auto &offsetB = world.get<CBoundingBox>(b).offset;
+
+    // distance between entity a and b in the x and y direction
+    Vec2 delta{abs((posA.x + offsetA.x) - (posB.x + offsetB.x)), abs((posA.y + offsetA.y) - (posB.y + offsetB.y))};
+
+    // compute overlap in x-direction and y-direction
+    float ox{(hSizeA.x + hSizeB.x) - delta.x};
+    float oy{(hSizeA.y + hSizeB.y) - delta.y};
+
+    overlap.x = ox;
+    overlap.y = oy;
+
+    return overlap;
+}
+
+Vec2 Physics1::GetPreviousOverlap(std::shared_ptr<Entity1> a, std::shared_ptr<Entity1> b) {
+    // HINT: use definiton of GetOVerlap but use prevPosition instead
+    // TODO: return the previous overlap rectangle size of the bounding boxes of entity a and b
+    //       previous overlap uses the entity's previous position
+    Vec2 overlap;
+
+    auto &posA = world.get<CTransform>(a).prevPos;
+    auto &posB = world.get<CTransform>(b).prevPos;
+    auto &hSizeA = world.get<CBoundingBox>(a).halfSize;
+    auto &hSizeB = world.get<CBoundingBox>(b).halfSize;
+    auto &offsetA = world.get<CBoundingBox>(a).offset;
+    auto &offsetB = world.get<CBoundingBox>(b).offset;
+    // solve dx and dy, distance between entity a and b
+    Vec2 delta{abs((posA.x + offsetA.x) - (posB.x + offsetB.x)), abs((posA.y + offsetA.y) - (posB.y + offsetB.y))};
+
+    // compute overlap in x-direction and y-direction
+    float ox{(hSizeA.x + hSizeB.x) - delta.x};
+    float oy{(hSizeA.y + hSizeB.y) - delta.y};
+
+    overlap.x = ox;
+    overlap.y = oy;
+
+    return Vec2(ox, oy);
+}
+
+Intersect Physics1::LineIntersect(Vec2 a, Vec2 b, Vec2 c, Vec2 d) {
+    Vec2 r = b - a;
+    Vec2 s = d - c;
+    float rxs = (r.x * s.y) - (r.y * s.x);
+
+    Vec2 cma = c - a;
+
+    float t = ((cma.x * s.y) - (cma.y * s.x)) / rxs;
+    float u = ((cma.x * r.y) - (cma.y * r.x)) / rxs;
+
+    if (t>=0 && t<=1 && u>=0 && u<=1) {
+        return Intersect{true, Vec2(a.x + t*r.x, a.y + t*r.y)};
+    }
+    else {
+        return Intersect{false, Vec2(0,0)};
+    }
+}
+
+bool Physics1::EntityIntersect(const Vec2& p1, const Vec2& p2, std::shared_ptr<Entity1> e) {
+    // get all life segments of an entity's bounding box
+
+    auto& eOrigin = world.get<CTransform>(e).pos;
+    auto& eBox = world.get<CBoundingBox>(e);
+    Vec2 e1{eOrigin.x - eBox.halfSize.x, eOrigin.y - eBox.halfSize.y};
+    Vec2 e2{eOrigin.x + eBox.halfSize.x, eOrigin.y - eBox.halfSize.y};
+    Vec2 e3{eOrigin.x + eBox.halfSize.x, eOrigin.y + eBox.halfSize.y};
+    Vec2 e4{eOrigin.x - eBox.halfSize.x, eOrigin.y + eBox.halfSize.y};
+
+    Intersect i1 = LineIntersect(p1, p2, e1, e2);
+    Intersect i2 = LineIntersect(p1, p2, e2, e3);
+    Intersect i3 = LineIntersect(p1, p2, e3, e4);
+    Intersect i4 = LineIntersect(p1, p2, e4, e1);
+
+    return i1.result || i2.result || i3.result || i4.result;
+}
+
+std::vector<Intersect> Physics1::ShapeIntersect(const Vec2 &p1, const Vec2 &p2, std::shared_ptr<Entity1> e) {
+    auto& shape = world.get<CShape>(e).shape;
+    std::vector<Vec2> points = {};
+    std::vector<Intersect> intersects = {};
+
+    // find all line segements of a shape
+    for(size_t idx=0; idx < shape.getPointCount(); idx++) {
+        Vec2 point(shape.getPoint(idx).x, shape.getPoint(idx).y);
+        points.push_back(point);
+    }
+
+    // check for intersects
+    for(size_t idx=0; idx < points.size(); idx++) {
+        size_t nextIdx = (idx + 1) % points.size();
+
+        if (p2 == points[idx] || p2 == points[nextIdx]) { continue;}
+
+
+//        std::cout << "p1(" << points[idx].x << ", " << points[idx].y << "); " << "p2(" << points[nextIdx].x << ", " << points[nextIdx].y << ") " << std::endl;
+//        std::cout << std::endl;
+        Intersect intersect = LineIntersect(p1, p2, points[idx], points[nextIdx]);
+        if(intersect.result) {
+//            std::cout << "p1(" << p1.x << ", " << p1.y << "); " << "p2(" << p2.x << ", " << p2.y << ") " << "I(" << intersect.pos.x << ", " << intersect.pos.y << ") " << std::endl;
+//            std::cout << "p1(" << points[idx].x << ", " << points[idx].y << "); " << "p2(" << points[nextIdx].x << ", " << points[nextIdx].y << ") " << std::endl;
+//            std::cout << std::endl;
+//            std::cout << intersect.pos.x << " " << intersect.pos.y << std::endl;
+//            std::cout << intersect.result << std::endl;
+            intersects.push_back(intersect);
+        }
+    }
+
+    // find the closest intersecting point
+
+    return intersects;
+}

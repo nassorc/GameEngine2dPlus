@@ -52,3 +52,8 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   include("/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/json-build/cmake_install.cmake")
 endif()
 
+if(NOT CMAKE_INSTALL_LOCAL_ONLY)
+  # Include the install script for the subdirectory.
+  include("/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/tomlplusplus-build/cmake_install.cmake")
+endif()
+
