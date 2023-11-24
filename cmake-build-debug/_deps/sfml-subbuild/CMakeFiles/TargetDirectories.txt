@@ -1,3 +1,0 @@
-/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/CMakeFiles/sfml-populate.dir
-/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/CMakeFiles/edit_cache.dir
-/Users/macrossan/Code/CPP/Projects/lightcasting/cmake-build-debug/_deps/sfml-subbuild/CMakeFiles/rebuild_cache.dir
